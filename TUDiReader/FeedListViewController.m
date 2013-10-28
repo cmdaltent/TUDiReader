@@ -83,6 +83,12 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    /*!
+        The _reuseIdentifier_ is used to identify the cell object if it is to be reused.
+        If you pass nil as a reuse identifier, the cell will not be reused.
+        The same reuse identifier should be used for cells that have the same form. Consequently, multiple different reuse identifiers
+        are possible for differently formed cells.
+     */
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
