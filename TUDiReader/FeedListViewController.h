@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+@class Feed;
+
 @interface FeedListViewController : UITableViewController
 
 @end

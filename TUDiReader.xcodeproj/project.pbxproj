@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5B14B1001827E5360057C62F /* Feed.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B14B0FF1827E5360057C62F /* Feed.m */; };
 		5B5CE90E181EA97200F4B542 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B5CE90D181EA97200F4B542 /* Foundation.framework */; };
 		5B5CE910181EA97200F4B542 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B5CE90F181EA97200F4B542 /* CoreGraphics.framework */; };
 		5B5CE912181EA97200F4B542 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B5CE911181EA97200F4B542 /* UIKit.framework */; };
@@ -36,6 +37,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5B14B0FE1827E5360057C62F /* Feed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Feed.h; sourceTree = "<group>"; };
+		5B14B0FF1827E5360057C62F /* Feed.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Feed.m; sourceTree = "<group>"; };
 		5B5CE90A181EA97200F4B542 /* TUDiReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TUDiReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B5CE90D181EA97200F4B542 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		5B5CE90F181EA97200F4B542 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -127,6 +130,8 @@
 				5B5CE941181EB3EE00F4B542 /* NewFeedView.xib */,
 				5B5CE943181EB47000F4B542 /* NewFeedViewController.h */,
 				5B5CE944181EB47000F4B542 /* NewFeedViewController.m */,
+				5B14B0FE1827E5360057C62F /* Feed.h */,
+				5B14B0FF1827E5360057C62F /* Feed.m */,
 			);
 			path = TUDiReader;
 			sourceTree = "<group>";
@@ -260,6 +265,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5B14B1001827E5360057C62F /* Feed.m in Sources */,
 				5B5CE940181EAB8C00F4B542 /* FeedListViewController.m in Sources */,
 				5B5CE91E181EA97200F4B542 /* AppDelegate.m in Sources */,
 				5B5CE91A181EA97200F4B542 /* main.m in Sources */,
@@ -466,6 +472,7 @@
 				5B5CE938181EA97200F4B542 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		5B5CE939181EA97200F4B542 /* Build configuration list for PBXNativeTarget "TUDiReaderTests" */ = {
 			isa = XCConfigurationList;
@@ -474,6 +481,7 @@
 				5B5CE93B181EA97200F4B542 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -8,10 +8,13 @@
 
 #import "FeedListViewController.h"
 
-@interface FeedListViewController () <UITableViewDataSource, UITableViewDelegate>
+#import "NewFeedViewController.h"
+#import "Feed.h"
+
+@interface FeedListViewController () <NewFeedViewControllerDelegate>
 
 /// Feeds that are stored and displayed in this view.
-@property (strong, nonatomic) NSArray *feeds;
+@property (strong, nonatomic) NSMutableArray *feeds;    // mutable objects can be modified at runtime. Objects can be added / removed to the array.
 
 /*!
     Displays the NewFeedView to create a new feed for the list.
@@ -27,8 +30,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad]; // Always forward viewDidLoad to the super class. Views will not correctly otherwise.
-
-    self.feeds = [NSArray arrayWithObjects:@"Feed 1", @"Feed 2", @"Feed 3", nil];
+    
+    self.feeds = [NSMutableArray array];
     
     /*!
         The navigation item represents the view controller in a parent's view navigation controller.
@@ -46,6 +49,16 @@
                                                                                                 target:self
                                                                                                 action:@selector(openNewFeedView:)]];
      */
+}
+
+- (NSString *)title
+{
+    /*!
+        Return the title of the View. It will be displayed in the navigation bar in the title field.
+        Alternatively you could use (in viewDidLoad):
+        [self.navigationItem.title = @"Feeds"];
+     */
+    return @"Feeds";
 }
 
 - (void)didReceiveMemoryWarning
@@ -92,10 +105,18 @@
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     
-    cell.textLabel.text = [self.feeds objectAtIndex:indexPath.row];
+    /*!
+        Keep in mind that we know what kind of objects are stored in the Array.
+        Objects stored in here that are not feeds would cause a crash.
+        One possible solution is to check the object's type we want to add to the array.
+        If it is of kind 'Feed' we can added, otherwise not.
+     */
+    Feed *feed = [self.feeds objectAtIndex:indexPath.row];
+    cell.textLabel.text = feed.title;
+    cell.detailTextLabel.text = [feed.url absoluteString];
     
     return cell;
 }
@@ -104,7 +125,29 @@
 
 - (void)openNewFeedView:(id)sender
 {
-    NSLog(@"openNewFeedView: clicked.");
+    NewFeedViewController *newFeedViewController = [[NewFeedViewController alloc] initWithNibName:@"NewFeedView" bundle:nil];
+    newFeedViewController.delegate = self;
+    /*!
+        Pushes a new ViewController on the navigation stack and displays the respective controller.
+        The animation set to YES causes a default animation of the view. It will slide in from the right hand side of the device's screen.
+     */
+    [self.navigationController pushViewController:newFeedViewController animated:YES];
+}
+
+#pragma mark - NewFeedViewControllerDelegate
+
+- (void)saveFeed:(Feed *)feed
+{
+    /*!
+        The parameters type actually is already a type check, but it is weak because Xcode only gives us a warning when
+        we send this message to FeedListViewController, which we can ignore.
+        To really make sure only objects of kind 'Feed' are added to the array the following construct would do the job.
+    if ([feed isKindOfClass:[Feed class]]) {
+        [self.feeds addObject:feed];
+    } else NSLog(@"Not a feed!");
+     */
+    [self.feeds addObject:feed];
+    [((UITableView *)self.view) reloadData];
 }
 
 @end
