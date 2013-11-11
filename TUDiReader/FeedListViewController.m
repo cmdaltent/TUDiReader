@@ -10,6 +10,7 @@
 
 #import "NewFeedViewController.h"
 #import "Feed.h"
+#import "ItemListViewController.h"
 
 @interface FeedListViewController () <NewFeedViewControllerDelegate>
 
@@ -30,8 +31,19 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad]; // Always forward viewDidLoad to the super class. Views will not correctly otherwise.
-    
-    self.feeds = [NSMutableArray array];
+
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"DefaultFeeds" ofType:@"plist"];
+    NSArray *rawFeeds = [NSArray arrayWithContentsOfFile:filePath]; // Array of NSDictionary objects (compare to DefaultFeeds.plist)
+    self.feeds = [NSMutableArray arrayWithCapacity:rawFeeds.count];
+    for (NSDictionary *rawFeed in rawFeeds) {
+        /*!
+            An NSDictionary stores pairs of key-value.
+            keyForValue: returns the value represented by the given key or nil if the key is not existing
+         */
+        Feed *feed = [[Feed alloc] initWithTitle:[rawFeed valueForKey:@"title"]
+                                          andURL:[NSURL URLWithString:[rawFeed valueForKey:@"url"]]];
+        [self.feeds addObject:feed];
+    }
     
     /*!
         The navigation item represents the view controller in a parent's view navigation controller.
@@ -117,8 +129,24 @@
     Feed *feed = [self.feeds objectAtIndex:indexPath.row];
     cell.textLabel.text = feed.title;
     cell.detailTextLabel.text = [feed.url absoluteString];
+    /*!
+        Displays a gray arrow – the disclosure indicator – at the UITableView's right border.
+     */
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     return cell;
+}
+
+#pragma mark - UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    Feed *feed = [self.feeds objectAtIndex:indexPath.row];
+    
+    ItemListViewController *itemListViewController = [[ItemListViewController alloc] initWithNibName:@"ListView" bundle:nil];
+    itemListViewController.feed = feed;
+    
+    [self.navigationController pushViewController:itemListViewController animated:YES];
 }
 
 #pragma mark - Custom Actions

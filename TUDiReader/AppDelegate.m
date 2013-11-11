@@ -19,7 +19,7 @@
      */
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-    FeedListViewController *feedListViewController = [[FeedListViewController alloc] initWithNibName:@"FeedListView" bundle:nil];
+    FeedListViewController *feedListViewController = [[FeedListViewController alloc] initWithNibName:@"ListView" bundle:nil];
     /*!
         If ViewController and nib-file had the same file name, you could simply call:
         [[FeedListViewController alloc] init]

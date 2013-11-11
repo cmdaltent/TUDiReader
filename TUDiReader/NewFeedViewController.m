@@ -63,7 +63,7 @@
 #pragma mark - IBAction
 
 - (IBAction)saveFeed:(id)sender {
-    Feed *feed = [[Feed alloc] initWithTitle:self.feedURLTextField.text
+    Feed *feed = [[Feed alloc] initWithTitle:self.feedTitleTextField.text
                                       andURL:[NSURL URLWithString:self.feedURLTextField.text]];
     /*!
         The saveFeed: method here is known from the NewFeedViewControllerDelegate.

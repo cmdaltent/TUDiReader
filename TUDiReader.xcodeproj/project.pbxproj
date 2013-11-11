@@ -20,10 +20,12 @@
 		5B5CE929181EA97200F4B542 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B5CE911181EA97200F4B542 /* UIKit.framework */; };
 		5B5CE931181EA97200F4B542 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5B5CE92F181EA97200F4B542 /* InfoPlist.strings */; };
 		5B5CE933181EA97200F4B542 /* TUDiReaderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5CE932181EA97200F4B542 /* TUDiReaderTests.m */; };
-		5B5CE93D181EAAD600F4B542 /* FeedListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B5CE93C181EAAD600F4B542 /* FeedListView.xib */; };
+		5B5CE93D181EAAD600F4B542 /* ListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B5CE93C181EAAD600F4B542 /* ListView.xib */; };
 		5B5CE940181EAB8C00F4B542 /* FeedListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5CE93F181EAB8C00F4B542 /* FeedListViewController.m */; };
 		5B5CE942181EB3EE00F4B542 /* NewFeedView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B5CE941181EB3EE00F4B542 /* NewFeedView.xib */; };
 		5B5CE945181EB47000F4B542 /* NewFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5CE944181EB47000F4B542 /* NewFeedViewController.m */; };
+		5B5D801E18311A6B00B856EC /* DefaultFeeds.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5B5D801D18311A6B00B856EC /* DefaultFeeds.plist */; };
+		5B5D8021183125AF00B856EC /* ItemListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5D8020183125AF00B856EC /* ItemListViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,12 +57,15 @@
 		5B5CE92E181EA97200F4B542 /* TUDiReaderTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TUDiReaderTests-Info.plist"; sourceTree = "<group>"; };
 		5B5CE930181EA97200F4B542 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5B5CE932181EA97200F4B542 /* TUDiReaderTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TUDiReaderTests.m; sourceTree = "<group>"; };
-		5B5CE93C181EAAD600F4B542 /* FeedListView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedListView.xib; sourceTree = "<group>"; };
+		5B5CE93C181EAAD600F4B542 /* ListView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ListView.xib; sourceTree = "<group>"; };
 		5B5CE93E181EAB8C00F4B542 /* FeedListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedListViewController.h; sourceTree = "<group>"; };
 		5B5CE93F181EAB8C00F4B542 /* FeedListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedListViewController.m; sourceTree = "<group>"; };
 		5B5CE941181EB3EE00F4B542 /* NewFeedView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewFeedView.xib; sourceTree = "<group>"; };
 		5B5CE943181EB47000F4B542 /* NewFeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewFeedViewController.h; sourceTree = "<group>"; };
 		5B5CE944181EB47000F4B542 /* NewFeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewFeedViewController.m; sourceTree = "<group>"; };
+		5B5D801D18311A6B00B856EC /* DefaultFeeds.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DefaultFeeds.plist; sourceTree = "<group>"; };
+		5B5D801F183125AF00B856EC /* ItemListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemListViewController.h; sourceTree = "<group>"; };
+		5B5D8020183125AF00B856EC /* ItemListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemListViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,7 +129,7 @@
 				5B5CE91D181EA97200F4B542 /* AppDelegate.m */,
 				5B5CE91F181EA97200F4B542 /* Images.xcassets */,
 				5B5CE914181EA97200F4B542 /* Supporting Files */,
-				5B5CE93C181EAAD600F4B542 /* FeedListView.xib */,
+				5B5CE93C181EAAD600F4B542 /* ListView.xib */,
 				5B5CE93E181EAB8C00F4B542 /* FeedListViewController.h */,
 				5B5CE93F181EAB8C00F4B542 /* FeedListViewController.m */,
 				5B5CE941181EB3EE00F4B542 /* NewFeedView.xib */,
@@ -132,6 +137,9 @@
 				5B5CE944181EB47000F4B542 /* NewFeedViewController.m */,
 				5B14B0FE1827E5360057C62F /* Feed.h */,
 				5B14B0FF1827E5360057C62F /* Feed.m */,
+				5B5D801D18311A6B00B856EC /* DefaultFeeds.plist */,
+				5B5D801F183125AF00B856EC /* ItemListViewController.h */,
+				5B5D8020183125AF00B856EC /* ItemListViewController.m */,
 			);
 			path = TUDiReader;
 			sourceTree = "<group>";
@@ -243,10 +251,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5B5CE93D181EAAD600F4B542 /* FeedListView.xib in Resources */,
+				5B5CE93D181EAAD600F4B542 /* ListView.xib in Resources */,
 				5B5CE942181EB3EE00F4B542 /* NewFeedView.xib in Resources */,
 				5B5CE918181EA97200F4B542 /* InfoPlist.strings in Resources */,
 				5B5CE920181EA97200F4B542 /* Images.xcassets in Resources */,
+				5B5D801E18311A6B00B856EC /* DefaultFeeds.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -266,6 +275,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5B14B1001827E5360057C62F /* Feed.m in Sources */,
+				5B5D8021183125AF00B856EC /* ItemListViewController.m in Sources */,
 				5B5CE940181EAB8C00F4B542 /* FeedListViewController.m in Sources */,
 				5B5CE91E181EA97200F4B542 /* AppDelegate.m in Sources */,
 				5B5CE91A181EA97200F4B542 /* main.m in Sources */,
