@@ -9,6 +9,8 @@
 #import "ItemListViewController.h"
 
 #import "Feed.h"
+#import "FeedParser.h"
+#import "Item.h"
 
 @interface ItemListViewController ()
 
@@ -17,6 +19,9 @@
 @end
 
 @implementation ItemListViewController
+{
+    FeedParser *_parser;
+}
 
 - (void)viewDidLoad
 {
@@ -39,7 +44,27 @@
                     consequently, if you'd acces UI objects, you should dispatch operations in the block to the main queue
      */
     NSURLSessionDataTask *sessionTask = [session dataTaskWithURL:self.feed.url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        _parser = [[FeedParser alloc] initWithData:data];
         NSLog(@"%@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+        /*!
+            References in the block body are retained, regardless their declaration outside the block as strong or weak.
+            If 'self' would be used in the block's body directly, the block itself would hold a strong reference to 'self' –
+            the ItemListViewController instance in this case. Simultaneously the ItemListViewcontroller holds a strong reference
+            to the FeedParser instance which owns the property.
+            Hence, the block and the ItemListViewController retain each other and would never get released – a retain cycle.
+         
+            Instead of using 'self' directly in the block body, we create a variable that points weakly to 'self', which is weakSelf.
+            weakSelf is now retained by the block, but as it points to the ItemListViewController's 'self' weakly – it's not retaining it,
+            a retain cycle is not introduced because weakSelf can be released, when the block is released.
+         */
+        ItemListViewController *__weak weakSelf = self;
+        _parser.parsingFinishedBlock = ^(NSArray *items) {
+            weakSelf.items = items;
+            [((UITableView *)weakSelf.view) reloadData];
+        };
+        NSOperationQueue *parserQueue = [NSOperationQueue new];
+        parserQueue.maxConcurrentOperationCount = 1;
+        [parserQueue addOperation:_parser]; //  When the operation is ready for execution, the NSOperation's main method will be invoked by the system.
     }];
     [sessionTask resume]; // launch the request
 }
@@ -69,11 +94,14 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    // FIXME: App will crash at this line. Fix it.
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    static NSString *CellIdentifier = @"ItemCell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    }
     
-    // Configure the cell...
+    Item *item = [self.items objectAtIndex:indexPath.row];
+    cell.textLabel.text = item.title;
     
     return cell;
 }

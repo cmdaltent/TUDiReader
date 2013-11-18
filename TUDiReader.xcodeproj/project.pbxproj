@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		5B14B1001827E5360057C62F /* Feed.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B14B0FF1827E5360057C62F /* Feed.m */; };
+		5B59CC5F183A57EE007941D9 /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B59CC5E183A57EE007941D9 /* Item.m */; };
+		5B59CC65183A5981007941D9 /* FeedParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B59CC64183A5981007941D9 /* FeedParser.m */; };
 		5B5CE90E181EA97200F4B542 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B5CE90D181EA97200F4B542 /* Foundation.framework */; };
 		5B5CE910181EA97200F4B542 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B5CE90F181EA97200F4B542 /* CoreGraphics.framework */; };
 		5B5CE912181EA97200F4B542 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B5CE911181EA97200F4B542 /* UIKit.framework */; };
@@ -41,6 +43,10 @@
 /* Begin PBXFileReference section */
 		5B14B0FE1827E5360057C62F /* Feed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Feed.h; sourceTree = "<group>"; };
 		5B14B0FF1827E5360057C62F /* Feed.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Feed.m; sourceTree = "<group>"; };
+		5B59CC5D183A57EE007941D9 /* Item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Item.h; sourceTree = "<group>"; };
+		5B59CC5E183A57EE007941D9 /* Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Item.m; sourceTree = "<group>"; };
+		5B59CC63183A5981007941D9 /* FeedParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedParser.h; sourceTree = "<group>"; };
+		5B59CC64183A5981007941D9 /* FeedParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedParser.m; sourceTree = "<group>"; };
 		5B5CE90A181EA97200F4B542 /* TUDiReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TUDiReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B5CE90D181EA97200F4B542 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		5B5CE90F181EA97200F4B542 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -92,6 +98,39 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5B59CC60183A580E007941D9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				5B14B0FE1827E5360057C62F /* Feed.h */,
+				5B14B0FF1827E5360057C62F /* Feed.m */,
+				5B59CC5D183A57EE007941D9 /* Item.h */,
+				5B59CC5E183A57EE007941D9 /* Item.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		5B59CC61183A582F007941D9 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				5B5CE93E181EAB8C00F4B542 /* FeedListViewController.h */,
+				5B5CE93F181EAB8C00F4B542 /* FeedListViewController.m */,
+				5B5CE943181EB47000F4B542 /* NewFeedViewController.h */,
+				5B5CE944181EB47000F4B542 /* NewFeedViewController.m */,
+				5B5D801F183125AF00B856EC /* ItemListViewController.h */,
+				5B5D8020183125AF00B856EC /* ItemListViewController.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		5B59CC62183A5840007941D9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				5B5CE93C181EAAD600F4B542 /* ListView.xib */,
+				5B5CE941181EB3EE00F4B542 /* NewFeedView.xib */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
 		5B5CE901181EA97200F4B542 = {
 			isa = PBXGroup;
 			children = (
@@ -129,17 +168,11 @@
 				5B5CE91D181EA97200F4B542 /* AppDelegate.m */,
 				5B5CE91F181EA97200F4B542 /* Images.xcassets */,
 				5B5CE914181EA97200F4B542 /* Supporting Files */,
-				5B5CE93C181EAAD600F4B542 /* ListView.xib */,
-				5B5CE93E181EAB8C00F4B542 /* FeedListViewController.h */,
-				5B5CE93F181EAB8C00F4B542 /* FeedListViewController.m */,
-				5B5CE941181EB3EE00F4B542 /* NewFeedView.xib */,
-				5B5CE943181EB47000F4B542 /* NewFeedViewController.h */,
-				5B5CE944181EB47000F4B542 /* NewFeedViewController.m */,
-				5B14B0FE1827E5360057C62F /* Feed.h */,
-				5B14B0FF1827E5360057C62F /* Feed.m */,
-				5B5D801D18311A6B00B856EC /* DefaultFeeds.plist */,
-				5B5D801F183125AF00B856EC /* ItemListViewController.h */,
-				5B5D8020183125AF00B856EC /* ItemListViewController.m */,
+				5B59CC62183A5840007941D9 /* View */,
+				5B59CC61183A582F007941D9 /* Controller */,
+				5B59CC60183A580E007941D9 /* Model */,
+				5B59CC63183A5981007941D9 /* FeedParser.h */,
+				5B59CC64183A5981007941D9 /* FeedParser.m */,
 			);
 			path = TUDiReader;
 			sourceTree = "<group>";
@@ -151,6 +184,7 @@
 				5B5CE916181EA97200F4B542 /* InfoPlist.strings */,
 				5B5CE919181EA97200F4B542 /* main.m */,
 				5B5CE91B181EA97200F4B542 /* TUDiReader-Prefix.pch */,
+				5B5D801D18311A6B00B856EC /* DefaultFeeds.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -274,11 +308,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5B59CC65183A5981007941D9 /* FeedParser.m in Sources */,
 				5B14B1001827E5360057C62F /* Feed.m in Sources */,
 				5B5D8021183125AF00B856EC /* ItemListViewController.m in Sources */,
 				5B5CE940181EAB8C00F4B542 /* FeedListViewController.m in Sources */,
 				5B5CE91E181EA97200F4B542 /* AppDelegate.m in Sources */,
 				5B5CE91A181EA97200F4B542 /* main.m in Sources */,
+				5B59CC5F183A57EE007941D9 /* Item.m in Sources */,
 				5B5CE945181EB47000F4B542 /* NewFeedViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
