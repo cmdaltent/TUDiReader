@@ -11,6 +11,7 @@
 #import "Feed.h"
 #import "FeedParser.h"
 #import "Item.h"
+#import "ItemPreviewTableViewCell.h"
 
 @interface ItemListViewController ()
 
@@ -95,15 +96,23 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"ItemCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    ItemPreviewTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[[NSBundle mainBundle] loadNibNamed:@"ItemPreviewTableViewCell" owner:self options:nil] firstObject];
     }
     
     Item *item = [self.items objectAtIndex:indexPath.row];
-    cell.textLabel.text = item.title;
+    cell.titleLabel.text = item.title;
     
     return cell;
+}
+
+#pragma mark UITableViewDelegate
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    Item *item = [self.items objectAtIndex:indexPath.row];
+    return [ItemPreviewTableViewCell expectedHeightWithTitle:item.title];
 }
 
 @end

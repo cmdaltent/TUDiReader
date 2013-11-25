@@ -94,7 +94,7 @@
         _currentItem.author = _nodeText;
     }
     if (_processingItem && [elementName isEqualToString:@"title"]) {
-        _currentItem.title = _nodeText;
+        _currentItem.title = [_nodeText stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]];
     }
 }
 

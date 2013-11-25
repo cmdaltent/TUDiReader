@@ -28,6 +28,8 @@
 		5B5CE945181EB47000F4B542 /* NewFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5CE944181EB47000F4B542 /* NewFeedViewController.m */; };
 		5B5D801E18311A6B00B856EC /* DefaultFeeds.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5B5D801D18311A6B00B856EC /* DefaultFeeds.plist */; };
 		5B5D8021183125AF00B856EC /* ItemListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5D8020183125AF00B856EC /* ItemListViewController.m */; };
+		5BA50110184392760028E72C /* ItemPreviewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5BA5010F184392760028E72C /* ItemPreviewTableViewCell.xib */; };
+		5BA50113184393D00028E72C /* ItemPreviewTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BA50112184393D00028E72C /* ItemPreviewTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +74,9 @@
 		5B5D801D18311A6B00B856EC /* DefaultFeeds.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DefaultFeeds.plist; sourceTree = "<group>"; };
 		5B5D801F183125AF00B856EC /* ItemListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemListViewController.h; sourceTree = "<group>"; };
 		5B5D8020183125AF00B856EC /* ItemListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemListViewController.m; sourceTree = "<group>"; };
+		5BA5010F184392760028E72C /* ItemPreviewTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ItemPreviewTableViewCell.xib; sourceTree = "<group>"; };
+		5BA50111184393D00028E72C /* ItemPreviewTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemPreviewTableViewCell.h; sourceTree = "<group>"; };
+		5BA50112184393D00028E72C /* ItemPreviewTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemPreviewTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +123,8 @@
 				5B5CE944181EB47000F4B542 /* NewFeedViewController.m */,
 				5B5D801F183125AF00B856EC /* ItemListViewController.h */,
 				5B5D8020183125AF00B856EC /* ItemListViewController.m */,
+				5BA50111184393D00028E72C /* ItemPreviewTableViewCell.h */,
+				5BA50112184393D00028E72C /* ItemPreviewTableViewCell.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -127,6 +134,7 @@
 			children = (
 				5B5CE93C181EAAD600F4B542 /* ListView.xib */,
 				5B5CE941181EB3EE00F4B542 /* NewFeedView.xib */,
+				5BA5010F184392760028E72C /* ItemPreviewTableViewCell.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -286,6 +294,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5B5CE93D181EAAD600F4B542 /* ListView.xib in Resources */,
+				5BA50110184392760028E72C /* ItemPreviewTableViewCell.xib in Resources */,
 				5B5CE942181EB3EE00F4B542 /* NewFeedView.xib in Resources */,
 				5B5CE918181EA97200F4B542 /* InfoPlist.strings in Resources */,
 				5B5CE920181EA97200F4B542 /* Images.xcassets in Resources */,
@@ -312,6 +321,7 @@
 				5B14B1001827E5360057C62F /* Feed.m in Sources */,
 				5B5D8021183125AF00B856EC /* ItemListViewController.m in Sources */,
 				5B5CE940181EAB8C00F4B542 /* FeedListViewController.m in Sources */,
+				5BA50113184393D00028E72C /* ItemPreviewTableViewCell.m in Sources */,
 				5B5CE91E181EA97200F4B542 /* AppDelegate.m in Sources */,
 				5B5CE91A181EA97200F4B542 /* main.m in Sources */,
 				5B59CC5F183A57EE007941D9 /* Item.m in Sources */,
