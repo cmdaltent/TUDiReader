@@ -85,10 +85,10 @@
         _currentItem.dateString = _nodeText;
     }
     if (_processingItem && [elementName isEqualToString:@"guid"]) {
-        _currentItem.guid = _nodeText;
+        _currentItem.guid = [_nodeText stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]];
     }
     if (_processingItem && [elementName isEqualToString:@"content:encoded"]) {
-        _currentItem.summary = _nodeText;
+        _currentItem.summary = [_nodeText stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]];
     }
     if (_processingItem && ([elementName isEqualToString:@"author"] || [elementName isEqualToString:@"dc:creator"])) {
         _currentItem.author = _nodeText;

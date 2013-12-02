@@ -18,6 +18,7 @@
         An application has always one window unless it can present content on external devices.
      */
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window.backgroundColor = [UIColor whiteColor];
     
     FeedListViewController *feedListViewController = [[FeedListViewController alloc] initWithNibName:@"ListView" bundle:nil];
     /*!

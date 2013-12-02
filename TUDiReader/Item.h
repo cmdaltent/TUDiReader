@@ -16,4 +16,6 @@
 @property (nonatomic) NSString *summary;
 @property (nonatomic) NSString *guid;
 
+- (NSString *)htmlSummary;
+
 @end

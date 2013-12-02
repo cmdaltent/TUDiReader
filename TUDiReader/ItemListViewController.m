@@ -12,6 +12,7 @@
 #import "FeedParser.h"
 #import "Item.h"
 #import "ItemPreviewTableViewCell.h"
+#import "ItemViewController.h"
 
 @interface ItemListViewController ()
 
@@ -108,6 +109,13 @@
 }
 
 #pragma mark UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    Item *item = [self.items objectAtIndex:indexPath.row];
+    ItemViewController *itemViewController = [[ItemViewController alloc] initWitItem:item];
+    [self.navigationController pushViewController:itemViewController animated:YES];
+}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
