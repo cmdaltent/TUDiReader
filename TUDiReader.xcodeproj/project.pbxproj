@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		5B14B1001827E5360057C62F /* Feed.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B14B0FF1827E5360057C62F /* Feed.m */; };
+		5B3EED271856077B00511CD2 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B3EED261856077A00511CD2 /* QuartzCore.framework */; };
+		5B3EED2A18560E5800511CD2 /* NewFeedSupportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B3EED2918560E5800511CD2 /* NewFeedSupportViewController.m */; };
+		5B3EED2C1856102000511CD2 /* NewFeedSupportView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B3EED2B1856102000511CD2 /* NewFeedSupportView.xib */; };
 		5B49EC39184CC8F3000240F9 /* ItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B49EC38184CC8F3000240F9 /* ItemView.xib */; };
 		5B49EC3C184CCC40000240F9 /* ItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B49EC3B184CCC40000240F9 /* ItemViewController.m */; };
 		5B49EC3E184CDB5D000240F9 /* WebView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B49EC3D184CDB5D000240F9 /* WebView.xib */; };
@@ -49,6 +52,10 @@
 /* Begin PBXFileReference section */
 		5B14B0FE1827E5360057C62F /* Feed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Feed.h; sourceTree = "<group>"; };
 		5B14B0FF1827E5360057C62F /* Feed.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Feed.m; sourceTree = "<group>"; };
+		5B3EED261856077A00511CD2 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		5B3EED2818560E5800511CD2 /* NewFeedSupportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewFeedSupportViewController.h; sourceTree = "<group>"; };
+		5B3EED2918560E5800511CD2 /* NewFeedSupportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewFeedSupportViewController.m; sourceTree = "<group>"; };
+		5B3EED2B1856102000511CD2 /* NewFeedSupportView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewFeedSupportView.xib; sourceTree = "<group>"; };
 		5B49EC38184CC8F3000240F9 /* ItemView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ItemView.xib; sourceTree = "<group>"; };
 		5B49EC3A184CCC40000240F9 /* ItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemViewController.h; sourceTree = "<group>"; };
 		5B49EC3B184CCC40000240F9 /* ItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemViewController.m; sourceTree = "<group>"; };
@@ -94,6 +101,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5B3EED271856077B00511CD2 /* QuartzCore.framework in Frameworks */,
 				5B5CE910181EA97200F4B542 /* CoreGraphics.framework in Frameworks */,
 				5B5CE912181EA97200F4B542 /* UIKit.framework in Frameworks */,
 				5B5CE90E181EA97200F4B542 /* Foundation.framework in Frameworks */,
@@ -139,6 +147,8 @@
 				5B49EC3B184CCC40000240F9 /* ItemViewController.m */,
 				5B49EC3F184CDB88000240F9 /* WebViewController.h */,
 				5B49EC40184CDB88000240F9 /* WebViewController.m */,
+				5B3EED2818560E5800511CD2 /* NewFeedSupportViewController.h */,
+				5B3EED2918560E5800511CD2 /* NewFeedSupportViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -151,6 +161,7 @@
 				5BA5010F184392760028E72C /* ItemPreviewTableViewCell.xib */,
 				5B49EC38184CC8F3000240F9 /* ItemView.xib */,
 				5B49EC3D184CDB5D000240F9 /* WebView.xib */,
+				5B3EED2B1856102000511CD2 /* NewFeedSupportView.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -177,6 +188,7 @@
 		5B5CE90C181EA97200F4B542 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5B3EED261856077A00511CD2 /* QuartzCore.framework */,
 				5B5CE90D181EA97200F4B542 /* Foundation.framework */,
 				5B5CE90F181EA97200F4B542 /* CoreGraphics.framework */,
 				5B5CE911181EA97200F4B542 /* UIKit.framework */,
@@ -309,6 +321,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5B3EED2C1856102000511CD2 /* NewFeedSupportView.xib in Resources */,
 				5B5CE93D181EAAD600F4B542 /* ListView.xib in Resources */,
 				5BA50110184392760028E72C /* ItemPreviewTableViewCell.xib in Resources */,
 				5B5CE942181EB3EE00F4B542 /* NewFeedView.xib in Resources */,
@@ -338,6 +351,7 @@
 				5B59CC65183A5981007941D9 /* FeedParser.m in Sources */,
 				5B14B1001827E5360057C62F /* Feed.m in Sources */,
 				5B49EC41184CDB88000240F9 /* WebViewController.m in Sources */,
+				5B3EED2A18560E5800511CD2 /* NewFeedSupportViewController.m in Sources */,
 				5B5D8021183125AF00B856EC /* ItemListViewController.m in Sources */,
 				5B5CE940181EAB8C00F4B542 /* FeedListViewController.m in Sources */,
 				5BA50113184393D00028E72C /* ItemPreviewTableViewCell.m in Sources */,

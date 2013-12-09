@@ -155,11 +155,10 @@
 {
     NewFeedViewController *newFeedViewController = [[NewFeedViewController alloc] initWithNibName:@"NewFeedView" bundle:nil];
     newFeedViewController.delegate = self;
-    /*!
-        Pushes a new ViewController on the navigation stack and displays the respective controller.
-        The animation set to YES causes a default animation of the view. It will slide in from the right hand side of the device's screen.
-     */
-    [self.navigationController pushViewController:newFeedViewController animated:YES];
+    
+    [self presentViewController:[[UINavigationController alloc] initWithRootViewController:newFeedViewController]
+                       animated:YES
+                     completion:nil];
 }
 
 #pragma mark - NewFeedViewControllerDelegate

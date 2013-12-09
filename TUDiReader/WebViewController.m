@@ -8,9 +8,13 @@
 
 #import "WebViewController.h"
 
-@interface WebViewController ()
+#import <QuartzCore/QuartzCore.h>
+
+@interface WebViewController () <UIWebViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
+@property (weak, nonatomic) IBOutlet UIView *activityView;
+@property (weak, nonatomic) IBOutlet UIView *grayContainerView;
 
 @end
 
@@ -34,7 +38,52 @@
 {
     [super viewDidLoad];
     
+    /*!
+        QuartzCore/QuartzCore.h required for this line
+     */
+    self.grayContainerView.layer.cornerRadius = 10.0;
+    
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    [self.view addSubview:self.activityView];
+    
     [self.webView loadRequest:[NSURLRequest requestWithURL:_url]];
 }
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView
+{
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    [self.activityView removeFromSuperview];
+}
+
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
+{
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    [self.activityView removeFromSuperview];
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 @end
