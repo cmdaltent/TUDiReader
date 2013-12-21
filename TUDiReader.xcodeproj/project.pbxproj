@@ -37,6 +37,11 @@
 		5B5D8021183125AF00B856EC /* ItemListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5D8020183125AF00B856EC /* ItemListViewController.m */; };
 		5BA50110184392760028E72C /* ItemPreviewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5BA5010F184392760028E72C /* ItemPreviewTableViewCell.xib */; };
 		5BA50113184393D00028E72C /* ItemPreviewTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BA50112184393D00028E72C /* ItemPreviewTableViewCell.m */; };
+		63CB84AD186593CA004C762A /* Group.m in Sources */ = {isa = PBXBuildFile; fileRef = 63CB84AC186593CA004C762A /* Group.m */; };
+		63CB84B01865984E004C762A /* Groups.m in Sources */ = {isa = PBXBuildFile; fileRef = 63CB84AF1865984E004C762A /* Groups.m */; };
+		63CB84B31865B5BB004C762A /* NavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63CB84B21865B5BB004C762A /* NavigationViewController.m */; };
+		63CB84B51865BE31004C762A /* FeedListTableSectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63CB84B41865BE31004C762A /* FeedListTableSectionHeader.xib */; };
+		63CB84B81865C03F004C762A /* FeedListTableSectionHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 63CB84B71865C03F004C762A /* FeedListTableSectionHeader.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,6 +99,15 @@
 		5BA5010F184392760028E72C /* ItemPreviewTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ItemPreviewTableViewCell.xib; sourceTree = "<group>"; };
 		5BA50111184393D00028E72C /* ItemPreviewTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemPreviewTableViewCell.h; sourceTree = "<group>"; };
 		5BA50112184393D00028E72C /* ItemPreviewTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemPreviewTableViewCell.m; sourceTree = "<group>"; };
+		63CB84AB186593CA004C762A /* Group.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Group.h; sourceTree = "<group>"; };
+		63CB84AC186593CA004C762A /* Group.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Group.m; sourceTree = "<group>"; };
+		63CB84AE1865984E004C762A /* Groups.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Groups.h; sourceTree = "<group>"; };
+		63CB84AF1865984E004C762A /* Groups.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Groups.m; sourceTree = "<group>"; };
+		63CB84B11865B5BB004C762A /* NavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationViewController.h; sourceTree = "<group>"; };
+		63CB84B21865B5BB004C762A /* NavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationViewController.m; sourceTree = "<group>"; };
+		63CB84B41865BE31004C762A /* FeedListTableSectionHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedListTableSectionHeader.xib; sourceTree = "<group>"; };
+		63CB84B61865C03F004C762A /* FeedListTableSectionHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedListTableSectionHeader.h; sourceTree = "<group>"; };
+		63CB84B71865C03F004C762A /* FeedListTableSectionHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedListTableSectionHeader.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +142,10 @@
 				5B14B0FF1827E5360057C62F /* Feed.m */,
 				5B59CC5D183A57EE007941D9 /* Item.h */,
 				5B59CC5E183A57EE007941D9 /* Item.m */,
+				63CB84AB186593CA004C762A /* Group.h */,
+				63CB84AC186593CA004C762A /* Group.m */,
+				63CB84AE1865984E004C762A /* Groups.h */,
+				63CB84AF1865984E004C762A /* Groups.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -149,6 +167,8 @@
 				5B49EC40184CDB88000240F9 /* WebViewController.m */,
 				5B3EED2818560E5800511CD2 /* NewFeedSupportViewController.h */,
 				5B3EED2918560E5800511CD2 /* NewFeedSupportViewController.m */,
+				63CB84B61865C03F004C762A /* FeedListTableSectionHeader.h */,
+				63CB84B71865C03F004C762A /* FeedListTableSectionHeader.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -162,6 +182,7 @@
 				5B49EC38184CC8F3000240F9 /* ItemView.xib */,
 				5B49EC3D184CDB5D000240F9 /* WebView.xib */,
 				5B3EED2B1856102000511CD2 /* NewFeedSupportView.xib */,
+				63CB84B41865BE31004C762A /* FeedListTableSectionHeader.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -209,6 +230,8 @@
 				5B59CC60183A580E007941D9 /* Model */,
 				5B59CC63183A5981007941D9 /* FeedParser.h */,
 				5B59CC64183A5981007941D9 /* FeedParser.m */,
+				63CB84B11865B5BB004C762A /* NavigationViewController.h */,
+				63CB84B21865B5BB004C762A /* NavigationViewController.m */,
 			);
 			path = TUDiReader;
 			sourceTree = "<group>";
@@ -324,6 +347,7 @@
 				5B3EED2C1856102000511CD2 /* NewFeedSupportView.xib in Resources */,
 				5B5CE93D181EAAD600F4B542 /* ListView.xib in Resources */,
 				5BA50110184392760028E72C /* ItemPreviewTableViewCell.xib in Resources */,
+				63CB84B51865BE31004C762A /* FeedListTableSectionHeader.xib in Resources */,
 				5B5CE942181EB3EE00F4B542 /* NewFeedView.xib in Resources */,
 				5B5CE918181EA97200F4B542 /* InfoPlist.strings in Resources */,
 				5B49EC39184CC8F3000240F9 /* ItemView.xib in Resources */,
@@ -350,14 +374,18 @@
 			files = (
 				5B59CC65183A5981007941D9 /* FeedParser.m in Sources */,
 				5B14B1001827E5360057C62F /* Feed.m in Sources */,
+				63CB84B31865B5BB004C762A /* NavigationViewController.m in Sources */,
 				5B49EC41184CDB88000240F9 /* WebViewController.m in Sources */,
 				5B3EED2A18560E5800511CD2 /* NewFeedSupportViewController.m in Sources */,
+				63CB84AD186593CA004C762A /* Group.m in Sources */,
 				5B5D8021183125AF00B856EC /* ItemListViewController.m in Sources */,
 				5B5CE940181EAB8C00F4B542 /* FeedListViewController.m in Sources */,
 				5BA50113184393D00028E72C /* ItemPreviewTableViewCell.m in Sources */,
 				5B5CE91E181EA97200F4B542 /* AppDelegate.m in Sources */,
+				63CB84B01865984E004C762A /* Groups.m in Sources */,
 				5B5CE91A181EA97200F4B542 /* main.m in Sources */,
 				5B49EC3C184CCC40000240F9 /* ItemViewController.m in Sources */,
+				63CB84B81865C03F004C762A /* FeedListTableSectionHeader.m in Sources */,
 				5B59CC5F183A57EE007941D9 /* Item.m in Sources */,
 				5B5CE945181EB47000F4B542 /* NewFeedViewController.m in Sources */,
 			);

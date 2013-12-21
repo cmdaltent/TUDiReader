@@ -9,8 +9,16 @@
 #import "NewFeedViewController.h"
 
 #import "Feed.h"
+#import "Group.h"
+#import "Groups.h"
+
 #import "FeedListViewController.h"
 #import "NewFeedSupportViewController.h"
+
+typedef enum _GroupSections {
+    NewGroupSection,
+    CustomGroupSection
+} GroupSections;
 
 @interface NewFeedViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -20,29 +28,51 @@
 @property (weak, nonatomic) IBOutlet UIView *feedURLContainerView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *groupTableViewHeight;
 
-@property (nonatomic) NSArray *groups;
+@property (nonatomic) NSIndexPath *selectedGroupPath;
 
 - (void)saveFeed:(id)sender;
+- (void)recalculateGroupTableViewHeight;
 
 @end
 
 @implementation NewFeedViewController
 
+static void *KVOContext = &KVOContext;
+
+- (void)dealloc
+{
+    [self.feedURLTextField removeObserver:self forKeyPath:@"text"];
+    [self.feedTitleTextField removeObserver:self forKeyPath:@"text"];
+    [self removeObserver:self forKeyPath:@"selectedGroupPath"];
+    
+    self.selectedGroupPath = nil;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    self.groups = [NSArray array];
-    
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel:)];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(saveFeed:)];
+    self.navigationItem.rightBarButtonItem.enabled = NO;
     
     [self.feedURLContainerView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(openSupportViewController:)]];
     [self.feedTitleContainerView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(openSupportViewController:)]];
     
-    self.groupTableViewHeight.constant = 44.0 + (44.0 * self.groups.count);
+    [self.feedTitleTextField addObserver:self forKeyPath:@"text" options:NSKeyValueObservingOptionNew context:KVOContext];
+    [self.feedURLTextField addObserver:self forKeyPath:@"text" options:NSKeyValueObservingOptionNew context:KVOContext];
+    [self addObserver:self forKeyPath:@"selectedGroupPath" options:NSKeyValueObservingOptionNew context:KVOContext];
     
-    [self.view needsUpdateConstraints];
+    [self recalculateGroupTableViewHeight];
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if (context == KVOContext) {
+        if (self.selectedGroupPath && ![self.feedURLTextField.text isEqualToString:@""] && ![self.feedURLTextField.text isEqualToString:@""]) {
+            self.navigationItem.rightBarButtonItem.enabled = YES;
+        } else self.navigationItem.rightBarButtonItem.enabled = NO;
+    }
 }
 
 - (NSString *)title
@@ -53,12 +83,15 @@
 #pragma mark - Custom Actions
 
 - (void)saveFeed:(id)sender {
+    Group *group = [self.groups groupAtIndex:self.selectedGroupPath.row];
     Feed *feed = [[Feed alloc] initWithTitle:self.feedTitleTextField.text
-                                      andURL:[NSURL URLWithString:self.feedURLTextField.text]];
+                                      andURL:[NSURL URLWithString:self.feedURLTextField.text]
+                              belongsToGroup:group];
+    [group addFeed:feed];
     /*!
         The saveFeed: method here is known from the NewFeedViewControllerDelegate.
      */
-    [self.delegate saveFeed:feed];
+    [self.delegate feedSaved];
     [self cancel:self];
 }
 
@@ -71,7 +104,7 @@
 {
     NewFeedSupportViewController *newFeedSuppoortViewController = nil;
     /*!
-        Compare
+        Compare memory addresses of the view is sufficient here.
      */
     if (sender.view == self.feedTitleContainerView) {
         newFeedSuppoortViewController = [[NewFeedSupportViewController alloc] initWithTitle:@"Feed Title"
@@ -93,12 +126,16 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 1 + (self.groups ? self.groups.count : 0);
+    if (section == NewGroupSection) {
+        return 1;
+    } else if (section == CustomGroupSection) {
+        return self.groups.count;
+    } else return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -109,12 +146,50 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    if (!indexPath.row) {
+    if (indexPath.section == NewGroupSection) {
         cell.textLabel.text = @"Add Group";
     } else {
-        // Cell set Group Name here.
+        cell.textLabel.text = [self.groups groupAtIndex:indexPath.row].title;
     }
     return cell;
+}
+
+#pragma mark - UITableViewDelegate
+
+- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == CustomGroupSection) {
+        [tableView cellForRowAtIndexPath:self.selectedGroupPath].accessoryType = UITableViewCellAccessoryNone;
+        self.selectedGroupPath = indexPath;
+    }
+    
+    return indexPath;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == NewGroupSection) {
+        NewFeedSupportViewController *supportViewController = [[NewFeedSupportViewController alloc] initWithTitle:@"New Group"
+                                                                                                  predefinedValue:nil
+                                                                                                  completionBlock:^(NSString *groupName) {
+                                                                                                      Group *newGroup = [[Group alloc] initWithTitle:groupName];
+                                                                                                      [self.groups addGroup:newGroup];
+                                                                                                      [self recalculateGroupTableViewHeight];
+                                                                                                      [tableView reloadData];
+                                                                                                  }];
+        [self.navigationController pushViewController:supportViewController animated:YES];
+    } else {
+        [tableView cellForRowAtIndexPath:indexPath].accessoryType = UITableViewCellAccessoryCheckmark;
+    }
+}
+
+#pragma mark - User Interface Helper
+
+- (void)recalculateGroupTableViewHeight
+{
+    self.groupTableViewHeight.constant = 44.0 + (44.0 * self.groups.count);
+    
+    [self.view needsUpdateConstraints];
 }
 
 @end

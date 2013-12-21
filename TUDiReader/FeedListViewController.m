@@ -8,14 +8,19 @@
 
 #import "FeedListViewController.h"
 
-#import "NewFeedViewController.h"
 #import "Feed.h"
+#import "Group.h"
+#import "Groups.h"
+
+#import "NewFeedViewController.h"
 #import "ItemListViewController.h"
+#import "NavigationViewController.h"
+#import "FeedListTableSectionHeader.h"
 
 @interface FeedListViewController () <NewFeedViewControllerDelegate>
 
 /// Feeds that are stored and displayed in this view.
-@property (strong, nonatomic) NSMutableArray *feeds;    // mutable objects can be modified at runtime. Objects can be added / removed to the array.
+@property (strong, nonatomic) Groups *groups;    // mutable objects can be modified at runtime. Objects can be added / removed to the array.
 
 /*!
     Displays the NewFeedView to create a new feed for the list.
@@ -32,18 +37,22 @@
 {
     [super viewDidLoad]; // Always forward viewDidLoad to the super class. Views will not correctly otherwise.
 
+    self.groups = [Groups new];
+    
     NSString *filePath = [[NSBundle mainBundle] pathForResource:@"DefaultFeeds" ofType:@"plist"];
     NSArray *rawFeeds = [NSArray arrayWithContentsOfFile:filePath]; // Array of NSDictionary objects (compare to DefaultFeeds.plist)
-    self.feeds = [NSMutableArray arrayWithCapacity:rawFeeds.count];
+    Group *defaultsGroup = [[Group alloc] initWithTitle:@"Default Feeds"];
     for (NSDictionary *rawFeed in rawFeeds) {
         /*!
             An NSDictionary stores pairs of key-value.
             keyForValue: returns the value represented by the given key or nil if the key is not existing
          */
         Feed *feed = [[Feed alloc] initWithTitle:[rawFeed valueForKey:@"title"]
-                                          andURL:[NSURL URLWithString:[rawFeed valueForKey:@"url"]]];
-        [self.feeds addObject:feed];
+                                          andURL:[NSURL URLWithString:[rawFeed valueForKey:@"url"]]
+                                  belongsToGroup:defaultsGroup];
+        [defaultsGroup addFeed:feed];
     }
+    [self.groups addGroup:defaultsGroup];
     
     /*!
         The navigation item represents the view controller in a parent's view navigation controller.
@@ -93,7 +102,7 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    return 1;
+    return self.groups.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -103,7 +112,7 @@
         Since we have only one section and a one-dimensional array as a data structure we can simply return the number of
         items in the array.
      */
-    return self.feeds.count;
+    return [self.groups groupAtIndex:section].feeds.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -118,6 +127,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+        cell.backgroundColor = [UIColor colorWithRed:205.0/255 green:212.0/255.0 blue:226.0/255.0 alpha:1.0];
     }
     
     /*!
@@ -126,7 +136,7 @@
         One possible solution is to check the object's type we want to add to the array.
         If it is of kind 'Feed' we can added, otherwise not.
      */
-    Feed *feed = [self.feeds objectAtIndex:indexPath.row];
+    Feed *feed = [[self.groups groupAtIndex:indexPath.section].feeds objectAtIndex:indexPath.row];
     cell.textLabel.text = feed.title;
     cell.detailTextLabel.text = [feed.url absoluteString];
     /*!
@@ -141,12 +151,20 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    Feed *feed = [self.feeds objectAtIndex:indexPath.row];
+    Feed *feed = [[self.groups groupAtIndex:indexPath.section].feeds objectAtIndex:indexPath.row];
     
     ItemListViewController *itemListViewController = [[ItemListViewController alloc] initWithNibName:@"ListView" bundle:nil];
     itemListViewController.feed = feed;
     
     [self.navigationController pushViewController:itemListViewController animated:YES];
+}
+
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    FeedListTableSectionHeader *headerView = [[NSBundle mainBundle] loadNibNamed:@"FeedListTableSectionHeader" owner:self options:nil][0];
+    headerView.title.text = [self.groups groupAtIndex:section].title;
+    
+    return headerView;
 }
 
 #pragma mark - Custom Actions
@@ -155,25 +173,17 @@
 {
     NewFeedViewController *newFeedViewController = [[NewFeedViewController alloc] initWithNibName:@"NewFeedView" bundle:nil];
     newFeedViewController.delegate = self;
+    newFeedViewController.groups = self.groups;
     
-    [self presentViewController:[[UINavigationController alloc] initWithRootViewController:newFeedViewController]
+    [self presentViewController:[[NavigationViewController alloc] initWithRootViewController:newFeedViewController]
                        animated:YES
                      completion:nil];
 }
 
 #pragma mark - NewFeedViewControllerDelegate
 
-- (void)saveFeed:(Feed *)feed
+- (void)feedSaved
 {
-    /*!
-        The parameters type actually is already a type check, but it is weak because Xcode only gives us a warning when
-        we send this message to FeedListViewController, which we can ignore.
-        To really make sure only objects of kind 'Feed' are added to the array the following construct would do the job.
-    if ([feed isKindOfClass:[Feed class]]) {
-        [self.feeds addObject:feed];
-    } else NSLog(@"Not a feed!");
-     */
-    [self.feeds addObject:feed];
     [((UITableView *)self.view) reloadData];
 }
 

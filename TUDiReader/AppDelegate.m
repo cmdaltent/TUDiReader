@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 
 #import "FeedListViewController.h"
+#import "NavigationViewController.h"
 
 @implementation AppDelegate
 
@@ -27,11 +28,12 @@
      */
     
     /*!
+        The NavigationController is a subclass of UINavigationController responsible for navigation bar styling.
         The UINavigationController provides us with all the functionalities we require to navigate from one view to another.
         All views are put on a view stack that grows buttom up and works LIFO.
         The rootViewController is the view initially displayed when the UINavigationController is presented.
      */
-    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:feedListViewController];
+    NavigationViewController *navigationController = [[NavigationViewController alloc] initWithRootViewController:feedListViewController];
     
     self.window.rootViewController = navigationController;
     

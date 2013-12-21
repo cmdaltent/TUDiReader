@@ -10,6 +10,7 @@
 
 @class FeedListViewController;
 @class Feed;
+@class Groups;
 
 @protocol NewFeedViewControllerDelegate;
 
@@ -19,7 +20,8 @@
 @interface NewFeedViewController : UIViewController
 
 /// The delegate object will be invoked when a new feed is ready for being stored.
-@property (nonatomic,weak) id<NewFeedViewControllerDelegate> delegate;
+@property (nonatomic, weak) id<NewFeedViewControllerDelegate> delegate;
+@property (nonatomic, weak) Groups *groups;
 
 @end
 
@@ -31,13 +33,8 @@
 @protocol NewFeedViewControllerDelegate <NSObject>
 
 /*!
-    This method is sent to the delegate when a feed is ready to be stored somewhere.
-    This method is mandatory.
-    
-    @param feed The feed object that contains all information related to a new RSS feed.
-    
-    @see Feed
+    This method will be called when a new feed was saved.
  */
-- (void)saveFeed:(Feed *)feed;
+- (void)feedSaved;
 
 @end
