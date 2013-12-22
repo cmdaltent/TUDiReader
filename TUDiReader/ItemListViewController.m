@@ -47,7 +47,7 @@
      */
     NSURLSessionDataTask *sessionTask = [session dataTaskWithURL:self.feed.url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         _parser = [[FeedParser alloc] initWithData:data];
-        NSLog(@"%@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
         /*!
             References in the block body are retained, regardless their declaration outside the block as strong or weak.
             If 'self' would be used in the block's body directly, the block itself would hold a strong reference to 'self' –
@@ -69,12 +69,7 @@
         [parserQueue addOperation:_parser]; //  When the operation is ready for execution, the NSOperation's main method will be invoked by the system.
     }];
     [sessionTask resume]; // launch the request
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 }
 
 - (NSString *)title
@@ -100,6 +95,7 @@
     ItemPreviewTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (!cell) {
         cell = [[[NSBundle mainBundle] loadNibNamed:@"ItemPreviewTableViewCell" owner:self options:nil] firstObject];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     
     Item *item = [self.items objectAtIndex:indexPath.row];

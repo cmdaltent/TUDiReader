@@ -91,7 +91,7 @@
         _currentItem.summary = [_nodeText stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]];
     }
     if (_processingItem && ([elementName isEqualToString:@"author"] || [elementName isEqualToString:@"dc:creator"])) {
-        _currentItem.author = _nodeText;
+        _currentItem.author = [_nodeText stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]];
     }
     if (_processingItem && [elementName isEqualToString:@"title"]) {
         _currentItem.title = [_nodeText stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]];
