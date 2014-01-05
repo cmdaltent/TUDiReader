@@ -82,7 +82,7 @@
         _processingItem = NO;
     }
     if (_processingItem && [elementName isEqualToString:@"pubDate"]) {
-        _currentItem.dateString = _nodeText;
+        _currentItem.dateString = [_nodeText stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]];
     }
     if (_processingItem && [elementName isEqualToString:@"guid"]) {
         _currentItem.guid = [_nodeText stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]];

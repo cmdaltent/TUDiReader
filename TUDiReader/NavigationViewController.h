@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+/*!
+    Decorates UINavigationController with a custom navigation bar styling.
+    Prevailes all other navigation controller behaviors.
+ */
 @interface NavigationViewController : UINavigationController
 
 @end

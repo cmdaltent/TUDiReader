@@ -10,6 +10,10 @@
 
 @class Group;
 
+/*!
+    Facade of NSMutableArray.
+    Allows a more convenient access to Group objects stored in the Collection.
+ */
 @interface Groups : NSObject
 
 - (void)addGroup:(Group *)group;
