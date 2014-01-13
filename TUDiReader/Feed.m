@@ -10,32 +10,20 @@
 
 @implementation Feed
 
-- (id)initWithTitle:(NSString *)title andURL:(NSURL *)url belongsToGroup:(Group *)group
++ (instancetype)insertWithTitle:(NSString *)title url:(NSURL *)url group:(Group *)group inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
 {
-    self = [super init];
-    if (self) {
-        self.title = title;
-        self.url = url;
-        self.group = group;
-    }
+    Feed *feed = [NSEntityDescription insertNewObjectForEntityForName:[self entityName] inManagedObjectContext:managedObjectContext];
+    feed.title = title;
+    feed.url = url;
+    feed.group = group;
     
-    return self;
+    return feed;
 }
 
-#pragma mark - Object Comparison
-
-- (BOOL)isEqual:(id)object
++ (NSString *)entityName
 {
-    if (![object isKindOfClass:[Feed class]]) {
-        return NO;
-    } else if ([object hash] == [self hash]) {
-        return YES;
-    } else return NO;
+    return @"Feed";
 }
 
-- (NSUInteger)hash
-{
-    return [self.title hash] | [self.url hash];
-}
 
 @end

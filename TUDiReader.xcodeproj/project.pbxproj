@@ -42,6 +42,9 @@
 		63CB84B31865B5BB004C762A /* NavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63CB84B21865B5BB004C762A /* NavigationViewController.m */; };
 		63CB84B51865BE31004C762A /* FeedListTableSectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63CB84B41865BE31004C762A /* FeedListTableSectionHeader.xib */; };
 		63CB84B81865C03F004C762A /* FeedListTableSectionHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 63CB84B71865C03F004C762A /* FeedListTableSectionHeader.m */; };
+		63FF767A187AF1B900C46D0E /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63FF7679187AF1B900C46D0E /* CoreData.framework */; };
+		63FF767D187AF1E700C46D0E /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 63FF767B187AF1E700C46D0E /* Model.xcdatamodeld */; };
+		63FF7681187AF63D00C46D0E /* PersistenceStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 63FF7680187AF63D00C46D0E /* PersistenceStack.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -108,6 +111,10 @@
 		63CB84B41865BE31004C762A /* FeedListTableSectionHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedListTableSectionHeader.xib; sourceTree = "<group>"; };
 		63CB84B61865C03F004C762A /* FeedListTableSectionHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedListTableSectionHeader.h; sourceTree = "<group>"; };
 		63CB84B71865C03F004C762A /* FeedListTableSectionHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedListTableSectionHeader.m; sourceTree = "<group>"; };
+		63FF7679187AF1B900C46D0E /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		63FF767C187AF1E700C46D0E /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		63FF767F187AF63D00C46D0E /* PersistenceStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersistenceStack.h; sourceTree = "<group>"; };
+		63FF7680187AF63D00C46D0E /* PersistenceStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersistenceStack.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +122,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				63FF767A187AF1B900C46D0E /* CoreData.framework in Frameworks */,
 				5B3EED271856077B00511CD2 /* QuartzCore.framework in Frameworks */,
 				5B5CE910181EA97200F4B542 /* CoreGraphics.framework in Frameworks */,
 				5B5CE912181EA97200F4B542 /* UIKit.framework in Frameworks */,
@@ -146,6 +154,7 @@
 				63CB84AC186593CA004C762A /* Group.m */,
 				63CB84AE1865984E004C762A /* Groups.h */,
 				63CB84AF1865984E004C762A /* Groups.m */,
+				63FF767B187AF1E700C46D0E /* Model.xcdatamodeld */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -209,6 +218,7 @@
 		5B5CE90C181EA97200F4B542 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				63FF7679187AF1B900C46D0E /* CoreData.framework */,
 				5B3EED261856077A00511CD2 /* QuartzCore.framework */,
 				5B5CE90D181EA97200F4B542 /* Foundation.framework */,
 				5B5CE90F181EA97200F4B542 /* CoreGraphics.framework */,
@@ -221,6 +231,7 @@
 		5B5CE913181EA97200F4B542 /* TUDiReader */ = {
 			isa = PBXGroup;
 			children = (
+				63FF767E187AF62400C46D0E /* Core Data */,
 				5B5CE91C181EA97200F4B542 /* AppDelegate.h */,
 				5B5CE91D181EA97200F4B542 /* AppDelegate.m */,
 				5B5CE91F181EA97200F4B542 /* Images.xcassets */,
@@ -264,6 +275,15 @@
 				5B5CE92F181EA97200F4B542 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		63FF767E187AF62400C46D0E /* Core Data */ = {
+			isa = PBXGroup;
+			children = (
+				63FF767F187AF63D00C46D0E /* PersistenceStack.h */,
+				63FF7680187AF63D00C46D0E /* PersistenceStack.m */,
+			);
+			name = "Core Data";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -372,6 +392,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				63FF7681187AF63D00C46D0E /* PersistenceStack.m in Sources */,
 				5B59CC65183A5981007941D9 /* FeedParser.m in Sources */,
 				5B14B1001827E5360057C62F /* Feed.m in Sources */,
 				63CB84B31865B5BB004C762A /* NavigationViewController.m in Sources */,
@@ -380,6 +401,7 @@
 				63CB84AD186593CA004C762A /* Group.m in Sources */,
 				5B5D8021183125AF00B856EC /* ItemListViewController.m in Sources */,
 				5B5CE940181EAB8C00F4B542 /* FeedListViewController.m in Sources */,
+				63FF767D187AF1E700C46D0E /* Model.xcdatamodeld in Sources */,
 				5BA50113184393D00028E72C /* ItemPreviewTableViewCell.m in Sources */,
 				5B5CE91E181EA97200F4B542 /* AppDelegate.m in Sources */,
 				63CB84B01865984E004C762A /* Groups.m in Sources */,
@@ -602,6 +624,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		63FF767B187AF1E700C46D0E /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				63FF767C187AF1E700C46D0E /* Model.xcdatamodel */,
+			);
+			currentVersion = 63FF767C187AF1E700C46D0E /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 5B5CE902181EA97200F4B542 /* Project object */;
 }

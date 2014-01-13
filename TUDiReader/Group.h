@@ -7,16 +7,17 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreData/CoreData.h>
 
 @class Feed;
 
-@interface Group : NSObject
+@interface Group : NSManagedObject
 
 @property (readonly, nonatomic) NSString *title;
-@property (readonly, nonatomic) NSArray *feeds;
+@property (nonatomic) NSArray *feeds;
 
-- (id)initWithTitle:(NSString *)title;
++ (instancetype)insertWithTitle:(NSString *)title inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 
-- (void)addFeed:(Feed *)feed;
++ (NSString *)entityName;
 
 @end

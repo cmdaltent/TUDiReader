@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreData/CoreData.h>
 
 @class Group;
 
@@ -22,15 +23,8 @@
 /// The Group the feed belongs to.
 @property (nonatomic) Group *group;
 
-/*!
-    Designated initializer used to set the feed's title and URL right on instanziation.
-    
-    @param title    The user-specific title of the feed.
-    @param url      URL used to fetch new RSS articles.
-    @param group    The Group the new feed instance belongs to.
-    
-    @return         A new instance of Feed storing the above specified information.
- */
-- (id)initWithTitle:(NSString *)title andURL:(NSURL *)url belongsToGroup:(Group *)group;
++ (instancetype)insertWithTitle:(NSString *)title url:(NSURL *)url group:(Group *)group inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
+
++ (NSString *)entityName;
 
 @end
