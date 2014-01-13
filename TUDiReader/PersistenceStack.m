@@ -8,6 +8,9 @@
 
 #import "PersistenceStack.h"
 
+#import "Feed.h"
+#import "Group.h"
+
 @interface PersistenceStack ()
 
 @property (nonatomic, readwrite)NSManagedObjectContext *managedObjectContext;
@@ -25,6 +28,7 @@
     if (self) {
         self.storeURL = storeURL;
         self.modelURL = modelURL;
+        
         [self setupPersistenceStack];
     }
     
@@ -45,7 +49,38 @@
         NSLog(@"Persistent Stack Error");
     }
     
+    [self prepopulateCoreData];
 }
+
+- (void)prepopulateCoreData
+{
+    if ([self isPrepopulationRequired]) {
+        NSString *filePath = [[NSBundle mainBundle] pathForResource:@"DefaultFeeds" ofType:@"plist"];
+        NSArray *rawFeeds = [NSArray arrayWithContentsOfFile:filePath];
+        Group *defaultsGroup = [Group insertWithTitle:@"DefaultFeeds" inManagedObjectContext:self.managedObjectContext];
+        for (NSDictionary *rawFeed in rawFeeds) {
+            [Feed insertWithTitle:[rawFeed valueForKey:@"title"]
+                              url:[NSURL URLWithString:[rawFeed valueForKey:@"url"]]
+                            group:defaultsGroup
+           inManagedObjectContext:self.managedObjectContext];
+        }
+        
+        NSError *error = nil;
+        [self.managedObjectContext save:&error];
+        if (error) {
+            NSLog(@"Error storing default feeds: %@", error);
+        }
+    }
+    
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"alreadyPrepopulated"];
+    
+}
+- (BOOL)isPrepopulationRequired
+{
+    BOOL required = ![[NSUserDefaults standardUserDefaults] boolForKey:@"alreadyPrepopulated"];
+    return required;
+}
+
 
 - (NSManagedObjectModel *)managedObjectModel
 {

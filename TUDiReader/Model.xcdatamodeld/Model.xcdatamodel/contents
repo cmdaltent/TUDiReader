@@ -2,7 +2,7 @@
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3401" systemVersion="13B3116" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Feed" representedClassName="Feed" syncable="YES">
         <attribute name="title" attributeType="String" syncable="YES"/>
-        <attribute name="url" attributeType="String" syncable="YES"/>
+        <attribute name="url" attributeType="Transformable" syncable="YES"/>
         <relationship name="group" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Group" inverseName="feeds" inverseEntity="Group" syncable="YES"/>
     </entity>
     <entity name="Group" representedClassName="Group" syncable="YES">
@@ -10,7 +10,7 @@
         <relationship name="feeds" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Feed" inverseName="group" inverseEntity="Feed" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Feed" positionX="709" positionY="194" width="128" height="88"/>
-        <element name="Group" positionX="412" positionY="192" width="128" height="73"/>
+        <element name="Feed" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Group" positionX="0" positionY="0" width="0" height="0"/>
     </elements>
 </model>

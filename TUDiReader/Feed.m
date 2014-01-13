@@ -10,13 +10,14 @@
 
 @implementation Feed
 
+@dynamic title, url, group;
+
 + (instancetype)insertWithTitle:(NSString *)title url:(NSURL *)url group:(Group *)group inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
 {
     Feed *feed = [NSEntityDescription insertNewObjectForEntityForName:[self entityName] inManagedObjectContext:managedObjectContext];
     feed.title = title;
     feed.url = url;
     feed.group = group;
-    
     return feed;
 }
 
@@ -24,6 +25,5 @@
 {
     return @"Feed";
 }
-
 
 @end

@@ -37,8 +37,8 @@
 		5B5D8021183125AF00B856EC /* ItemListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5D8020183125AF00B856EC /* ItemListViewController.m */; };
 		5BA50110184392760028E72C /* ItemPreviewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5BA5010F184392760028E72C /* ItemPreviewTableViewCell.xib */; };
 		5BA50113184393D00028E72C /* ItemPreviewTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BA50112184393D00028E72C /* ItemPreviewTableViewCell.m */; };
+		63005F50188429C70077C0DD /* FeedListDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 63005F4F188429C70077C0DD /* FeedListDataSource.m */; };
 		63CB84AD186593CA004C762A /* Group.m in Sources */ = {isa = PBXBuildFile; fileRef = 63CB84AC186593CA004C762A /* Group.m */; };
-		63CB84B01865984E004C762A /* Groups.m in Sources */ = {isa = PBXBuildFile; fileRef = 63CB84AF1865984E004C762A /* Groups.m */; };
 		63CB84B31865B5BB004C762A /* NavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63CB84B21865B5BB004C762A /* NavigationViewController.m */; };
 		63CB84B51865BE31004C762A /* FeedListTableSectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63CB84B41865BE31004C762A /* FeedListTableSectionHeader.xib */; };
 		63CB84B81865C03F004C762A /* FeedListTableSectionHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 63CB84B71865C03F004C762A /* FeedListTableSectionHeader.m */; };
@@ -102,10 +102,10 @@
 		5BA5010F184392760028E72C /* ItemPreviewTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ItemPreviewTableViewCell.xib; sourceTree = "<group>"; };
 		5BA50111184393D00028E72C /* ItemPreviewTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemPreviewTableViewCell.h; sourceTree = "<group>"; };
 		5BA50112184393D00028E72C /* ItemPreviewTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemPreviewTableViewCell.m; sourceTree = "<group>"; };
+		63005F4E188429C70077C0DD /* FeedListDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedListDataSource.h; sourceTree = "<group>"; };
+		63005F4F188429C70077C0DD /* FeedListDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedListDataSource.m; sourceTree = "<group>"; };
 		63CB84AB186593CA004C762A /* Group.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Group.h; sourceTree = "<group>"; };
 		63CB84AC186593CA004C762A /* Group.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Group.m; sourceTree = "<group>"; };
-		63CB84AE1865984E004C762A /* Groups.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Groups.h; sourceTree = "<group>"; };
-		63CB84AF1865984E004C762A /* Groups.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Groups.m; sourceTree = "<group>"; };
 		63CB84B11865B5BB004C762A /* NavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationViewController.h; sourceTree = "<group>"; };
 		63CB84B21865B5BB004C762A /* NavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationViewController.m; sourceTree = "<group>"; };
 		63CB84B41865BE31004C762A /* FeedListTableSectionHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedListTableSectionHeader.xib; sourceTree = "<group>"; };
@@ -152,8 +152,6 @@
 				5B59CC5E183A57EE007941D9 /* Item.m */,
 				63CB84AB186593CA004C762A /* Group.h */,
 				63CB84AC186593CA004C762A /* Group.m */,
-				63CB84AE1865984E004C762A /* Groups.h */,
-				63CB84AF1865984E004C762A /* Groups.m */,
 				63FF767B187AF1E700C46D0E /* Model.xcdatamodeld */,
 			);
 			name = Model;
@@ -282,6 +280,8 @@
 			children = (
 				63FF767F187AF63D00C46D0E /* PersistenceStack.h */,
 				63FF7680187AF63D00C46D0E /* PersistenceStack.m */,
+				63005F4E188429C70077C0DD /* FeedListDataSource.h */,
+				63005F4F188429C70077C0DD /* FeedListDataSource.m */,
 			);
 			name = "Core Data";
 			sourceTree = "<group>";
@@ -404,9 +404,9 @@
 				63FF767D187AF1E700C46D0E /* Model.xcdatamodeld in Sources */,
 				5BA50113184393D00028E72C /* ItemPreviewTableViewCell.m in Sources */,
 				5B5CE91E181EA97200F4B542 /* AppDelegate.m in Sources */,
-				63CB84B01865984E004C762A /* Groups.m in Sources */,
 				5B5CE91A181EA97200F4B542 /* main.m in Sources */,
 				5B49EC3C184CCC40000240F9 /* ItemViewController.m in Sources */,
+				63005F50188429C70077C0DD /* FeedListDataSource.m in Sources */,
 				63CB84B81865C03F004C762A /* FeedListTableSectionHeader.m in Sources */,
 				5B59CC5F183A57EE007941D9 /* Item.m in Sources */,
 				5B5CE945181EB47000F4B542 /* NewFeedViewController.m in Sources */,

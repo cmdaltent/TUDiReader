@@ -10,7 +10,6 @@
 
 #import "Feed.h"
 #import "Group.h"
-#import "Groups.h"
 
 #import "FeedListViewController.h"
 #import "NewFeedSupportViewController.h"
@@ -28,6 +27,7 @@ typedef enum _GroupSections {
 @property (weak, nonatomic) IBOutlet UIView *feedURLContainerView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *groupTableViewHeight;
 
+@property (nonatomic) NSArray *groups;
 @property (nonatomic) NSIndexPath *selectedGroupPath;
 
 - (void)saveFeed:(id)sender;
@@ -63,6 +63,7 @@ static void *KVOContext = &KVOContext;
     [self.feedURLTextField addObserver:self forKeyPath:@"text" options:NSKeyValueObservingOptionNew context:KVOContext];
     [self addObserver:self forKeyPath:@"selectedGroupPath" options:NSKeyValueObservingOptionNew context:KVOContext];
     
+    [self updateGroups];
     [self recalculateGroupTableViewHeight];
 }
 
@@ -83,15 +84,9 @@ static void *KVOContext = &KVOContext;
 #pragma mark - Custom Actions
 
 - (void)saveFeed:(id)sender {
-    Group *group = [self.groups groupAtIndex:self.selectedGroupPath.row];
-    Feed *feed = [[Feed alloc] initWithTitle:self.feedTitleTextField.text
-                                      andURL:[NSURL URLWithString:self.feedURLTextField.text]
-                              belongsToGroup:group];
-    [group addFeed:feed];
-    /*!
-        The saveFeed: method here is known from the NewFeedViewControllerDelegate.
-     */
-    [self.delegate feedSaved];
+    Group *group = [self.groups objectAtIndex:self.selectedGroupPath.row];
+    [Feed insertWithTitle:self.feedTitleTextField.text url:[NSURL URLWithString:self.feedURLTextField.text] group:group inManagedObjectContext:self.managedObjectContext];
+    
     [self cancel:self];
 }
 
@@ -149,7 +144,7 @@ static void *KVOContext = &KVOContext;
     if (indexPath.section == NewGroupSection) {
         cell.textLabel.text = @"Add Group";
     } else {
-        cell.textLabel.text = [self.groups groupAtIndex:indexPath.row].title;
+        cell.textLabel.text = [[self.groups objectAtIndex:indexPath.row] title];
     }
     return cell;
 }
@@ -172,8 +167,10 @@ static void *KVOContext = &KVOContext;
         NewFeedSupportViewController *supportViewController = [[NewFeedSupportViewController alloc] initWithTitle:@"New Group"
                                                                                                   predefinedValue:nil
                                                                                                   completionBlock:^(NSString *groupName) {
-                                                                                                      Group *newGroup = [[Group alloc] initWithTitle:groupName];
-                                                                                                      [self.groups addGroup:newGroup];
+                                                                                                      
+                                                                                                      [Group insertWithTitle:groupName inManagedObjectContext:self.managedObjectContext];
+                                                              
+                                                                                                      [self updateGroups];
                                                                                                       [self recalculateGroupTableViewHeight];
                                                                                                       [tableView reloadData];
                                                                                                   }];
@@ -184,6 +181,11 @@ static void *KVOContext = &KVOContext;
 }
 
 #pragma mark - User Interface Helper
+
+- (void)updateGroups
+{
+    self.groups = [self.managedObjectContext executeFetchRequest:[NSFetchRequest fetchRequestWithEntityName:@"Group"] error:NULL];
+}
 
 - (void)recalculateGroupTableViewHeight
 {

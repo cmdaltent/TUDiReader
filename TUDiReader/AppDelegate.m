@@ -32,6 +32,7 @@
     self.persistenceStack = [[PersistenceStack alloc] initWithStoreURL:[self storeURL] modelURL:[self modelURL]];
     
     FeedListViewController *feedListViewController = [[FeedListViewController alloc] initWithNibName:@"ListView" bundle:nil];
+    feedListViewController.managedObjectContext = self.persistenceStack.managedObjectContext;
     /*!
         If ViewController and nib-file had the same file name, you could simply call:
         [[FeedListViewController alloc] init]
@@ -49,6 +50,11 @@
     
     [self.window makeKeyAndVisible];
     return YES;
+}
+
+- (void)applicationDidEnterBackground:(UIApplication *)application
+{
+    [self.persistenceStack.managedObjectContext save:NULL];
 }
 
 - (NSURL *)storeURL

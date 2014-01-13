@@ -12,4 +12,6 @@
 
 @interface FeedListViewController : UITableViewController
 
+@property (nonatomic) NSManagedObjectContext *managedObjectContext;
+
 @end

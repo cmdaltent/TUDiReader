@@ -14,12 +14,12 @@
 /*!
     Keeps all information on a given RSS feed.
  */
-@interface Feed : NSObject
+@interface Feed : NSManagedObject
 
 /// User-specific title of the RSS feed.
 @property (nonatomic) NSString *title;
-/// URL used to fetch new RSS articles.
-@property (nonatomic) NSURL *url;
+/// String representation of the URL used to fetch new RSS articles.
+@property (nonatomic) NSURL *url;   // change the type of 'url' to 'Transformable' in the Model.xcdatamodeld to keep this property of type NSURL
 /// The Group the feed belongs to.
 @property (nonatomic) Group *group;
 

@@ -14,7 +14,7 @@
 @interface Group : NSManagedObject
 
 @property (readonly, nonatomic) NSString *title;
-@property (nonatomic) NSArray *feeds;
+@property (nonatomic) NSSet *feeds;
 
 + (instancetype)insertWithTitle:(NSString *)title inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 

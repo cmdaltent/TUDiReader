@@ -10,17 +10,16 @@
 
 #import "Feed.h"
 #import "Group.h"
-#import "Groups.h"
 
 #import "NewFeedViewController.h"
 #import "ItemListViewController.h"
 #import "NavigationViewController.h"
 #import "FeedListTableSectionHeader.h"
+#import "FeedListDataSource.h"
 
-@interface FeedListViewController () <NewFeedViewControllerDelegate>
+@interface FeedListViewController () <FeedListDataSourceDelegate>
 
-/// Feeds that are stored and displayed in this view.
-@property (strong, nonatomic) Groups *groups;    // mutable objects can be modified at runtime. Objects can be added / removed to the array.
+@property (nonatomic) FeedListDataSource *feedListDataSource;
 
 /*!
     Displays the NewFeedView to create a new feed for the list.
@@ -37,22 +36,6 @@
 {
     [super viewDidLoad]; // Always forward viewDidLoad to the super class. Views will not correctly otherwise.
 
-    self.groups = [Groups new];
-    
-    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"DefaultFeeds" ofType:@"plist"];
-    NSArray *rawFeeds = [NSArray arrayWithContentsOfFile:filePath]; // Array of NSDictionary objects (compare to DefaultFeeds.plist)
-    Group *defaultsGroup = [[Group alloc] initWithTitle:@"Default Feeds"];
-    for (NSDictionary *rawFeed in rawFeeds) {
-        /*!
-            An NSDictionary stores pairs of key-value.
-            keyForValue: returns the value represented by the given key or nil if the key is not existing
-         */
-        Feed *feed = [[Feed alloc] initWithTitle:[rawFeed valueForKey:@"title"]
-                                          andURL:[NSURL URLWithString:[rawFeed valueForKey:@"url"]]
-                                  belongsToGroup:defaultsGroup];
-        [defaultsGroup addFeed:feed];
-    }
-    [self.groups addGroup:defaultsGroup];
     
     /*!
         The navigation item represents the view controller in a parent's view navigation controller.
@@ -64,12 +47,11 @@
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                                                                            target:self
                                                                                            action:@selector(openNewFeedView:)];
-    /*!
-        Just an example why the dot-syntax for properties is so much nicer than using the actual getter and setter methods ;)
-     [[self navigationItem] setRightBarButtonItem:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
-                                                                                                target:self
-                                                                                                action:@selector(openNewFeedView:)]];
-     */
+    
+    self.feedListDataSource = [[FeedListDataSource alloc] initWithTableView:self.tableView cellReuseIdentifier:@"FeedCell" managedObjectContext:self.managedObjectContext];
+    
+    self.feedListDataSource.delegate = self;
+    
 }
 
 - (NSString *)title
@@ -82,77 +64,26 @@
     return @"Feeds";
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
+#pragma mark - FeedListDataSourceDelegate
 
-#pragma mark - UITableViewDataSource
-/*!
-    Implementation of UITableViewDataSource methods.
- 
-    numberOfSectionsInTableView:
-    tableView:numberOfRowsInSection:
-    tableView:cellForRowAtIndexPath:
- 
-    are mandatory.
- */
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    // Return the number of sections.
-    return self.groups.count;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+- (void)configureCell:(UITableViewCell *__autoreleasing *)cell withFeed:(Feed *)feed
 {
     /*!
-        Return the number of rows in the respective section.
-        Since we have only one section and a one-dimensional array as a data structure we can simply return the number of
-        items in the array.
+     Since we have a pointer to a pointer, we need to dereference cell to actually modify its pointee.
      */
-    return [self.groups groupAtIndex:section].feeds.count;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    /*!
-        The _reuseIdentifier_ is used to identify the cell object if it is to be reused.
-        If you pass nil as a reuse identifier, the cell will not be reused.
-        The same reuse identifier should be used for cells that have the same form. Consequently, multiple different reuse identifiers
-        are possible for differently formed cells.
-     */
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
-        cell.backgroundColor = [UIColor colorWithRed:205.0/255 green:212.0/255.0 blue:226.0/255.0 alpha:1.0];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    if (*cell == nil) {
+        *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"FeedCell"];
+        (*cell).backgroundColor = [UIColor colorWithRed:205.0/255.0 green:212.0/255.0 blue:226.0/255.0 alpha:1.0];
     }
-    
-    /*!
-        Keep in mind that we know what kind of objects are stored in the Array.
-        Objects stored in here that are not feeds would cause a crash.
-        One possible solution is to check the object's type we want to add to the array.
-        If it is of kind 'Feed' we can added, otherwise not.
-     */
-    Feed *feed = [[self.groups groupAtIndex:indexPath.section].feeds objectAtIndex:indexPath.row];
-    cell.textLabel.text = feed.title;
-    cell.detailTextLabel.text = [feed.url absoluteString];
-    /*!
-        Displays a gray arrow – the disclosure indicator – at the UITableView's right border.
-     */
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    
-    return cell;
+    (*cell).textLabel.text = feed.title;
+    (*cell).detailTextLabel.text = [feed.url absoluteString];
 }
 
 #pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    Feed *feed = [[self.groups groupAtIndex:indexPath.section].feeds objectAtIndex:indexPath.row];
+    Feed *feed = [self.feedListDataSource feedAtIndexPath:indexPath];
     
     ItemListViewController *itemListViewController = [[ItemListViewController alloc] initWithNibName:@"ListView" bundle:nil];
     itemListViewController.feed = feed;
@@ -163,7 +94,7 @@
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     FeedListTableSectionHeader *headerView = [[NSBundle mainBundle] loadNibNamed:@"FeedListTableSectionHeader" owner:self options:nil][0];
-    headerView.title.text = [self.groups groupAtIndex:section].title;
+    headerView.title.text = [self.feedListDataSource tableView:tableView titleForHeaderInSection:section];
     
     return headerView;
 }
@@ -173,19 +104,11 @@
 - (void)openNewFeedView:(id)sender
 {
     NewFeedViewController *newFeedViewController = [[NewFeedViewController alloc] initWithNibName:@"NewFeedView" bundle:nil];
-    newFeedViewController.delegate = self;
-    newFeedViewController.groups = self.groups;
+    newFeedViewController.managedObjectContext = self.managedObjectContext;
     
     [self presentViewController:[[NavigationViewController alloc] initWithRootViewController:newFeedViewController]
                        animated:YES
                      completion:nil];
-}
-
-#pragma mark - NewFeedViewControllerDelegate
-
-- (void)feedSaved
-{
-    [((UITableView *)self.view) reloadData];
 }
 
 @end
