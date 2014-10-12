@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>title</key>
+		<string>9to5 Mac All</string>
+		<key>url</key>
+		<string>http://feeds.feedburner.com/9to5Mac-MacAllDay</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>Flo&apos;s Weblog</string>
+		<key>url</key>
+		<string>http://www.schimanke.com/index.php?/feeds/index.rss2</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>TUD News &amp; Announcements</string>
+		<key>url</key>
+		<string>http://www.inf.tu-dresden.de/rss.php?channel=news&amp;node_id=1&amp;ln=en</string>
+	</dict>
+</array>
+</plist>
