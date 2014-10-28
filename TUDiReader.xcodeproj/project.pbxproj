@@ -16,6 +16,7 @@
 		63D5A65719F542C100B2C872 /* TUDiReaderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 63D5A65619F542C100B2C872 /* TUDiReaderTests.m */; };
 		63D5A66219F5444600B2C872 /* FeedsListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63D5A66119F5444600B2C872 /* FeedsListTableViewController.m */; };
 		63D5A66519F547B500B2C872 /* Feed.m in Sources */ = {isa = PBXBuildFile; fileRef = 63D5A66419F547B500B2C872 /* Feed.m */; };
+		63D80BF319FE8ED800F4EF1D /* AddFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63D80BF219FE8ED800F4EF1D /* AddFeedViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +47,8 @@
 		63D5A66119F5444600B2C872 /* FeedsListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedsListTableViewController.m; sourceTree = "<group>"; };
 		63D5A66319F547B500B2C872 /* Feed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Feed.h; sourceTree = "<group>"; };
 		63D5A66419F547B500B2C872 /* Feed.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Feed.m; sourceTree = "<group>"; };
+		63D80BF119FE8ED800F4EF1D /* AddFeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddFeedViewController.h; sourceTree = "<group>"; };
+		63D80BF219FE8ED800F4EF1D /* AddFeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddFeedViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +102,8 @@
 				63D5A66119F5444600B2C872 /* FeedsListTableViewController.m */,
 				63D5A66319F547B500B2C872 /* Feed.h */,
 				63D5A66419F547B500B2C872 /* Feed.m */,
+				63D80BF119FE8ED800F4EF1D /* AddFeedViewController.h */,
+				63D80BF219FE8ED800F4EF1D /* AddFeedViewController.m */,
 			);
 			path = TUDiReader;
 			sourceTree = "<group>";
@@ -229,6 +234,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				63D80BF319FE8ED800F4EF1D /* AddFeedViewController.m in Sources */,
 				63D5A63D19F542C100B2C872 /* AppDelegate.m in Sources */,
 				63D5A66219F5444600B2C872 /* FeedsListTableViewController.m in Sources */,
 				63D5A66519F547B500B2C872 /* Feed.m in Sources */,
