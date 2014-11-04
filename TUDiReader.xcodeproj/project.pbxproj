@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		638972321A07C90600B79899 /* AddGroupTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 638972311A07C90600B79899 /* AddGroupTableViewController.m */; };
+		638972351A07C9E200B79899 /* Group.m in Sources */ = {isa = PBXBuildFile; fileRef = 638972341A07C9E200B79899 /* Group.m */; };
+		638972381A07D0B500B79899 /* CreateGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 638972371A07D0B500B79899 /* CreateGroupViewController.m */; };
 		63D5A63A19F542C100B2C872 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 63D5A63919F542C100B2C872 /* main.m */; };
 		63D5A63D19F542C100B2C872 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 63D5A63C19F542C100B2C872 /* AppDelegate.m */; };
 		63D5A64319F542C100B2C872 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63D5A64219F542C100B2C872 /* DetailViewController.m */; };
@@ -30,6 +33,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		638972301A07C90600B79899 /* AddGroupTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddGroupTableViewController.h; sourceTree = "<group>"; };
+		638972311A07C90600B79899 /* AddGroupTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddGroupTableViewController.m; sourceTree = "<group>"; };
+		638972331A07C9E200B79899 /* Group.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Group.h; sourceTree = "<group>"; };
+		638972341A07C9E200B79899 /* Group.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Group.m; sourceTree = "<group>"; };
+		638972361A07D0B500B79899 /* CreateGroupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateGroupViewController.h; sourceTree = "<group>"; };
+		638972371A07D0B500B79899 /* CreateGroupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateGroupViewController.m; sourceTree = "<group>"; };
 		63D5A63419F542C100B2C872 /* TUDiReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TUDiReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		63D5A63819F542C100B2C872 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		63D5A63919F542C100B2C872 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -104,6 +113,12 @@
 				63D5A66419F547B500B2C872 /* Feed.m */,
 				63D80BF119FE8ED800F4EF1D /* AddFeedViewController.h */,
 				63D80BF219FE8ED800F4EF1D /* AddFeedViewController.m */,
+				638972301A07C90600B79899 /* AddGroupTableViewController.h */,
+				638972311A07C90600B79899 /* AddGroupTableViewController.m */,
+				638972331A07C9E200B79899 /* Group.h */,
+				638972341A07C9E200B79899 /* Group.m */,
+				638972361A07D0B500B79899 /* CreateGroupViewController.h */,
+				638972371A07D0B500B79899 /* CreateGroupViewController.m */,
 			);
 			path = TUDiReader;
 			sourceTree = "<group>";
@@ -235,11 +250,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				63D80BF319FE8ED800F4EF1D /* AddFeedViewController.m in Sources */,
+				638972381A07D0B500B79899 /* CreateGroupViewController.m in Sources */,
+				638972321A07C90600B79899 /* AddGroupTableViewController.m in Sources */,
 				63D5A63D19F542C100B2C872 /* AppDelegate.m in Sources */,
 				63D5A66219F5444600B2C872 /* FeedsListTableViewController.m in Sources */,
 				63D5A66519F547B500B2C872 /* Feed.m in Sources */,
 				63D5A63A19F542C100B2C872 /* main.m in Sources */,
 				63D5A64319F542C100B2C872 /* DetailViewController.m in Sources */,
+				638972351A07C9E200B79899 /* Group.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
