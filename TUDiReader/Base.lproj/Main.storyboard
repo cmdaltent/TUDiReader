@@ -182,7 +182,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="EPf-SG-5PW" kind="popoverPresentation" identifier="AddGroupCell" popoverAnchorView="mkE-kE-UOu" id="K9D-mL-1bc">
+                                    <segue destination="EPf-SG-5PW" kind="popoverPresentation" identifier="AddGroupSegue" popoverAnchorView="mkE-kE-UOu" id="K9D-mL-1bc">
                                         <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                                     </segue>
                                 </connections>
@@ -226,6 +226,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="addGroupButton" destination="mkE-kE-UOu" id="XmC-2R-11f"/>
+                        <outlet property="selectedGroupLabel" destination="oyw-Mp-qSz" id="hYo-bF-YYZ"/>
                         <outlet property="titleTextField" destination="ZYg-oS-RDt" id="JTq-I1-W3K"/>
                         <outlet property="urlStringTextField" destination="rFw-db-yB6" id="NkE-cB-zGk"/>
                     </connections>
@@ -250,10 +252,18 @@
                                 <rect key="frame" x="16" y="0.0" width="568" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="xKx-xj-xAM">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="AddGroupCell" textLabel="wKq-9y-ypj" style="IBUITableViewCellStyleDefault" id="xKx-xj-xAM">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xKx-xj-xAM" id="TdC-PI-qfa">
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="wKq-9y-ypj">
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>

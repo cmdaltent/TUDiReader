@@ -10,15 +10,9 @@
 
 @implementation Feed
 
-- (instancetype)initWithTitle:(NSString *)title andURL:(NSURL *)url
-{
-    if ( (self = [super init]) )
-    {
-        self.title = title;
-        self.url = url;
-    }
-    
-    return self;
-}
+@dynamic title;
+@dynamic url;
+
+@dynamic group;
 
 @end

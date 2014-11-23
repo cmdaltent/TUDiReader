@@ -8,17 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@protocol AddFeedViewControllerDelegate;
-@class Feed;
-
 @interface AddFeedViewController : UIViewController
-
-@property (weak) id<AddFeedViewControllerDelegate> delegate;
-
-@end
-
-@protocol AddFeedViewControllerDelegate <NSObject>
-
-- (void)feedCreated:(Feed *)feed;
 
 @end

@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+@class Group;
+
+typedef void (^AddGroupCompletionBlock)(Group *);
+
 @interface AddGroupTableViewController : UIViewController
+
+@property (copy) AddGroupCompletionBlock completionBlock;
 
 @end

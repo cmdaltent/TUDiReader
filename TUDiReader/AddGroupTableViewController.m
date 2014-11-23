@@ -9,6 +9,7 @@
 #import "AddGroupTableViewController.h"
 
 #import "Group.h"
+#import "PersistenceStack.h"
 
 @interface AddGroupTableViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -22,11 +23,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(updateGroups:)
+                                                 name:NSManagedObjectContextDidSaveNotification
+                                               object:nil];
+    
+    [self updateGroups:self];
 }
 
 - (BOOL)prefersStatusBarHidden
@@ -34,7 +37,28 @@
     return YES;
 }
 
-#pragma mark - Table view data source
+- (void)updateGroups:(id)sender
+{
+    NSManagedObjectContext *managedObjectContext = [PersistenceStack sharedPersistenceStack].managedObjectContext;
+    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Group"];
+    NSError *fetchError;
+    
+    self.groups = [managedObjectContext executeFetchRequest:fetchRequest error:&fetchError];
+    if (fetchError)
+    {
+        NSLog(@"Could not fetch Groups.");
+        return;
+    }
+    
+    [self.groupsTableView reloadData];
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+#pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
@@ -51,6 +75,19 @@
     cell.textLabel.text = group.name;
     
     return cell;
+}
+
+#pragma mark - UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    Group *group = self.groups[indexPath.row];
+    if (self.completionBlock)
+    {
+        self.completionBlock(group);
+    }
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

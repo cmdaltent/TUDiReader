@@ -9,14 +9,15 @@
 #import "FeedsListTableViewController.h"
 
 #import "Feed.h"
+#import "PersistenceStack.h"
 #import "AddFeedViewController.h"
 
-@interface FeedsListTableViewController () <AddFeedViewControllerDelegate>
+@interface FeedsListTableViewController ()
 {
     BOOL _isViewDisplayed;
 }
 
-@property NSArray *feeds;
+@property NSArray *groups;
 
 @end
 
@@ -24,8 +25,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    self.feeds = @[ [[Feed alloc] initWithTitle:@"Test" andURL:[NSURL URLWithString:@"http://localhost"]] ];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(updateTableView:)
+                                                 name:NSManagedObjectContextDidSaveNotification object:nil];
+    
+    [self updateTableView:self];
     
     _isViewDisplayed = YES;
 }
@@ -47,6 +52,15 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)updateTableView:(id)sender
+{
+    NSManagedObjectContext *managedObjectContext = [PersistenceStack sharedPersistenceStack].managedObjectContext;
+    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Group"];
+    NSError *fetchError = nil;
+    
+    self.groups = [managedObjectContext executeFetchRequest:fetchRequest error:&fetchError];
+}
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"showDetail"])
     {
@@ -57,39 +71,23 @@
         controller.navigationItem.leftBarButtonItem = self.splitViewController.displayModeButtonItem;
         controller.navigationItem.leftItemsSupplementBackButton = YES;
     }
-
-    if ( [[segue identifier] isEqualToString:@"AddFeedSegue"])
-    {
-        AddFeedViewController *controller = (AddFeedViewController *)[[segue destinationViewController] topViewController];
-        controller.delegate = self;
-    }
-}
-
-- (void)feedCreated:(Feed *)feed
-{
-    NSMutableArray *tmp = [self.feeds mutableCopy];
-    if (feed)
-        [tmp addObject:feed];
-    self.feeds = [tmp copy];
-    
-    if (_isViewDisplayed)
-        [(UITableView *)self.view reloadData];
 }
 
 #pragma mark - UITableViewDataSource
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return self.groups.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.feeds.count;
+    return [(Group *)self.groups[section] feeds].count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FeedCell" forIndexPath:indexPath];
     
-    Feed *feed = [self.feeds objectAtIndex:indexPath.row];
+    Feed *feed = [(Group *)self.groups[indexPath.section] orderedFeeds][indexPath.row];
     cell.textLabel.text = feed.title;
     cell.detailTextLabel.text = [feed.url absoluteString];
     

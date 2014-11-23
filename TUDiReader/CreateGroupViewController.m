@@ -8,6 +8,9 @@
 
 #import "CreateGroupViewController.h"
 
+#import "PersistenceStack.h"
+#import "Group.h"
+
 @interface CreateGroupViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *groupNameTextField;
 
@@ -35,8 +38,44 @@
 
 - (IBAction)save:(id)sender
 {
-    // TODO:
+    NSManagedObjectContext *managedObjectContext = [PersistenceStack sharedPersistenceStack].managedObjectContext;
+    
+    Group *group = [[Group alloc] initWithEntity:[NSEntityDescription entityForName:@"Group" inManagedObjectContext:managedObjectContext]
+                  insertIntoManagedObjectContext:managedObjectContext];
+    
+    group.name = self.groupNameTextField.text;
+    
+    NSError *saveError = nil;
+    [managedObjectContext save:&saveError];
+    if (saveError)
+    {
+        NSLog(@"Could not save Group.");
+    }
     
     [self cancel:self];
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 @end

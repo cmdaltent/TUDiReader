@@ -10,6 +10,8 @@
 		638972321A07C90600B79899 /* AddGroupTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 638972311A07C90600B79899 /* AddGroupTableViewController.m */; };
 		638972351A07C9E200B79899 /* Group.m in Sources */ = {isa = PBXBuildFile; fileRef = 638972341A07C9E200B79899 /* Group.m */; };
 		638972381A07D0B500B79899 /* CreateGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 638972371A07D0B500B79899 /* CreateGroupViewController.m */; };
+		63D4C0061A1100DC00DF35F3 /* PersistenceStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 63D4C0051A1100DC00DF35F3 /* PersistenceStack.m */; };
+		63D4C0091A1105BE00DF35F3 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 63D4C0071A1105BE00DF35F3 /* Model.xcdatamodeld */; };
 		63D5A63A19F542C100B2C872 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 63D5A63919F542C100B2C872 /* main.m */; };
 		63D5A63D19F542C100B2C872 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 63D5A63C19F542C100B2C872 /* AppDelegate.m */; };
 		63D5A64319F542C100B2C872 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63D5A64219F542C100B2C872 /* DetailViewController.m */; };
@@ -39,6 +41,9 @@
 		638972341A07C9E200B79899 /* Group.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Group.m; sourceTree = "<group>"; };
 		638972361A07D0B500B79899 /* CreateGroupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateGroupViewController.h; sourceTree = "<group>"; };
 		638972371A07D0B500B79899 /* CreateGroupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateGroupViewController.m; sourceTree = "<group>"; };
+		63D4C0041A1100DC00DF35F3 /* PersistenceStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersistenceStack.h; sourceTree = "<group>"; };
+		63D4C0051A1100DC00DF35F3 /* PersistenceStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersistenceStack.m; sourceTree = "<group>"; };
+		63D4C0081A1105BE00DF35F3 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		63D5A63419F542C100B2C872 /* TUDiReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TUDiReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		63D5A63819F542C100B2C872 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		63D5A63919F542C100B2C872 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -119,6 +124,9 @@
 				638972341A07C9E200B79899 /* Group.m */,
 				638972361A07D0B500B79899 /* CreateGroupViewController.h */,
 				638972371A07D0B500B79899 /* CreateGroupViewController.m */,
+				63D4C0041A1100DC00DF35F3 /* PersistenceStack.h */,
+				63D4C0051A1100DC00DF35F3 /* PersistenceStack.m */,
+				63D4C0071A1105BE00DF35F3 /* Model.xcdatamodeld */,
 			);
 			path = TUDiReader;
 			sourceTree = "<group>";
@@ -253,10 +261,12 @@
 				638972381A07D0B500B79899 /* CreateGroupViewController.m in Sources */,
 				638972321A07C90600B79899 /* AddGroupTableViewController.m in Sources */,
 				63D5A63D19F542C100B2C872 /* AppDelegate.m in Sources */,
+				63D4C0061A1100DC00DF35F3 /* PersistenceStack.m in Sources */,
 				63D5A66219F5444600B2C872 /* FeedsListTableViewController.m in Sources */,
 				63D5A66519F547B500B2C872 /* Feed.m in Sources */,
 				63D5A63A19F542C100B2C872 /* main.m in Sources */,
 				63D5A64319F542C100B2C872 /* DetailViewController.m in Sources */,
+				63D4C0091A1105BE00DF35F3 /* Model.xcdatamodeld in Sources */,
 				638972351A07C9E200B79899 /* Group.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -462,6 +472,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		63D4C0071A1105BE00DF35F3 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				63D4C0081A1105BE00DF35F3 /* Model.xcdatamodel */,
+			);
+			currentVersion = 63D4C0081A1105BE00DF35F3 /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 63D5A62C19F542C100B2C872 /* Project object */;
 }

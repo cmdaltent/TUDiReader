@@ -7,10 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreData/CoreData.h>
 
-@interface Group : NSObject
+@interface Group : NSManagedObject
 
 @property NSString *name;
 @property NSSet *feeds;
+
+- (NSArray *)orderedFeeds;
+
++ (NSEntityDescription *)entityDescription;
 
 @end

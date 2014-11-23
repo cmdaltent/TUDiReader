@@ -7,12 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreData/CoreData.h>
 
-@interface Feed : NSObject
+#import "Group.h"
+
+@interface Feed : NSManagedObject
 
 @property NSString *title;
 @property NSURL *url;
 
-- (instancetype)initWithTitle:(NSString *)title andURL:(NSURL *)url;
+@property Group *group;
 
 @end
