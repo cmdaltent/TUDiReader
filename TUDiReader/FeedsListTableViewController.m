@@ -11,6 +11,7 @@
 #import "Feed.h"
 #import "PersistenceStack.h"
 #import "AddFeedViewController.h"
+#import "FeedItemsTableViewController.h"
 
 @interface FeedsListTableViewController ()
 {
@@ -62,14 +63,17 @@
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([[segue identifier] isEqualToString:@"showDetail"])
+    if ([[segue identifier] isEqualToString:@"showFeedItems"])
     {
         /**
          Set the default 'Master'-Button on the Detail's View NavigationBar.
          */
-        UIViewController *controller = [[segue destinationViewController] topViewController];
+        FeedItemsTableViewController *controller = (FeedItemsTableViewController *)[[segue destinationViewController] topViewController];
         controller.navigationItem.leftBarButtonItem = self.splitViewController.displayModeButtonItem;
         controller.navigationItem.leftItemsSupplementBackButton = YES;
+        
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        controller.feed = [(Group *)self.groups[indexPath.section] orderedFeeds][indexPath.row];
     }
 }
 
@@ -92,6 +96,11 @@
     cell.detailTextLabel.text = [feed.url absoluteString];
     
     return cell;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    return [self.groups[section] name];
 }
 
 @end

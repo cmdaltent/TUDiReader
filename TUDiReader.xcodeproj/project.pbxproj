@@ -10,6 +10,9 @@
 		638972321A07C90600B79899 /* AddGroupTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 638972311A07C90600B79899 /* AddGroupTableViewController.m */; };
 		638972351A07C9E200B79899 /* Group.m in Sources */ = {isa = PBXBuildFile; fileRef = 638972341A07C9E200B79899 /* Group.m */; };
 		638972381A07D0B500B79899 /* CreateGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 638972371A07D0B500B79899 /* CreateGroupViewController.m */; };
+		63A2F1901A2377E600A0AFB3 /* FeedItemsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63A2F18F1A2377E600A0AFB3 /* FeedItemsTableViewController.m */; };
+		63A2F1931A237C5900A0AFB3 /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = 63A2F1921A237C5900A0AFB3 /* Item.m */; };
+		63A2F1961A237D2A00A0AFB3 /* FeedParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 63A2F1951A237D2A00A0AFB3 /* FeedParser.m */; };
 		63D4C0061A1100DC00DF35F3 /* PersistenceStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 63D4C0051A1100DC00DF35F3 /* PersistenceStack.m */; };
 		63D4C0091A1105BE00DF35F3 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 63D4C0071A1105BE00DF35F3 /* Model.xcdatamodeld */; };
 		63D5A63A19F542C100B2C872 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 63D5A63919F542C100B2C872 /* main.m */; };
@@ -41,6 +44,12 @@
 		638972341A07C9E200B79899 /* Group.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Group.m; sourceTree = "<group>"; };
 		638972361A07D0B500B79899 /* CreateGroupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateGroupViewController.h; sourceTree = "<group>"; };
 		638972371A07D0B500B79899 /* CreateGroupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateGroupViewController.m; sourceTree = "<group>"; };
+		63A2F18E1A2377E600A0AFB3 /* FeedItemsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedItemsTableViewController.h; sourceTree = "<group>"; };
+		63A2F18F1A2377E600A0AFB3 /* FeedItemsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedItemsTableViewController.m; sourceTree = "<group>"; };
+		63A2F1911A237C5900A0AFB3 /* Item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Item.h; sourceTree = "<group>"; };
+		63A2F1921A237C5900A0AFB3 /* Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Item.m; sourceTree = "<group>"; };
+		63A2F1941A237D2A00A0AFB3 /* FeedParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedParser.h; sourceTree = "<group>"; };
+		63A2F1951A237D2A00A0AFB3 /* FeedParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedParser.m; sourceTree = "<group>"; };
 		63D4C0041A1100DC00DF35F3 /* PersistenceStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersistenceStack.h; sourceTree = "<group>"; };
 		63D4C0051A1100DC00DF35F3 /* PersistenceStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersistenceStack.m; sourceTree = "<group>"; };
 		63D4C0081A1105BE00DF35F3 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
@@ -127,6 +136,12 @@
 				63D4C0041A1100DC00DF35F3 /* PersistenceStack.h */,
 				63D4C0051A1100DC00DF35F3 /* PersistenceStack.m */,
 				63D4C0071A1105BE00DF35F3 /* Model.xcdatamodeld */,
+				63A2F18E1A2377E600A0AFB3 /* FeedItemsTableViewController.h */,
+				63A2F18F1A2377E600A0AFB3 /* FeedItemsTableViewController.m */,
+				63A2F1911A237C5900A0AFB3 /* Item.h */,
+				63A2F1921A237C5900A0AFB3 /* Item.m */,
+				63A2F1941A237D2A00A0AFB3 /* FeedParser.h */,
+				63A2F1951A237D2A00A0AFB3 /* FeedParser.m */,
 			);
 			path = TUDiReader;
 			sourceTree = "<group>";
@@ -257,12 +272,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				63A2F1931A237C5900A0AFB3 /* Item.m in Sources */,
 				63D80BF319FE8ED800F4EF1D /* AddFeedViewController.m in Sources */,
 				638972381A07D0B500B79899 /* CreateGroupViewController.m in Sources */,
 				638972321A07C90600B79899 /* AddGroupTableViewController.m in Sources */,
+				63A2F1961A237D2A00A0AFB3 /* FeedParser.m in Sources */,
 				63D5A63D19F542C100B2C872 /* AppDelegate.m in Sources */,
 				63D4C0061A1100DC00DF35F3 /* PersistenceStack.m in Sources */,
 				63D5A66219F5444600B2C872 /* FeedsListTableViewController.m in Sources */,
+				63A2F1901A2377E600A0AFB3 /* FeedItemsTableViewController.m in Sources */,
 				63D5A66519F547B500B2C872 /* Feed.m in Sources */,
 				63D5A63A19F542C100B2C872 /* main.m in Sources */,
 				63D5A64319F542C100B2C872 /* DetailViewController.m in Sources */,
