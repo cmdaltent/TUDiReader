@@ -8,6 +8,8 @@
 
 #import "AppDelegate.h"
 #import "DetailViewController.h"
+#import "PersistenceStack.h"
+#import "Feed.h"
 
 @interface AppDelegate () <UISplitViewControllerDelegate>
 
@@ -45,6 +47,38 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+- (void)application:(UIApplication *)application performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
+{
+    NSError *fetchError = nil;
+    PersistenceStack *persistenceStack = [PersistenceStack sharedPersistenceStack];
+    Feed *feed = (Feed *)[persistenceStack.managedObjectContext existingObjectWithID:[persistenceStack preselectedFeedID] error:&fetchError];
+    if ( feed == nil || fetchError != nil )
+    {
+        completionHandler(UIBackgroundFetchResultNoData);
+        return;
+    }
+    else
+    {
+        NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration ephemeralSessionConfiguration]];
+        NSURLSessionTask *task = [session dataTaskWithURL:feed.url
+                                        completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+                                            if ( ((NSHTTPURLResponse *)response).statusCode != 200 )
+                                            {
+                                                completionHandler(UIBackgroundFetchResultFailed);
+                                                return ;
+                                            }
+                                            if ( data.length == 0)
+                                            {
+                                                completionHandler(UIBackgroundFetchResultNoData);
+                                                return;
+                                            }
+                                            // TODO: parse items and associate with feed.
+                                            completionHandler(UIBackgroundFetchResultNewData);
+                                        }];
+        [task resume];
+    }
 }
 
 #pragma mark - Split view

@@ -10,4 +10,13 @@
 
 @implementation Item
 
+@dynamic title;
+@dynamic author;
+@dynamic summary;
+@dynamic read;
+@dynamic dateString;
+@dynamic guid;
+
+@dynamic feed;
+
 @end

@@ -14,5 +14,6 @@
 @dynamic url;
 
 @dynamic group;
+@dynamic items;
 
 @end

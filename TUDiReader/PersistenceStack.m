@@ -15,6 +15,8 @@
 
 @end
 
+static NSString *PSDefaults_PreselectedFeed = @"PSDefaults_PreselectedFeed";
+
 @implementation PersistenceStack
 
 + (instancetype)sharedPersistenceStack
@@ -84,7 +86,52 @@
     return [[NSManagedObjectModel alloc] initWithContentsOfURL:url];
 }
 
+- (NSManagedObjectID *)preselectedFeedID
+{
+    NSDictionary *defaults = [[NSDictionary alloc] initWithContentsOfURL:[self defaultsFile]];
+    if ( defaults.count == 0 )
+    {
+        return nil;
+    }
+    
+    return [self.managedObjectContext.persistentStoreCoordinator managedObjectIDForURIRepresentation:[NSURL URLWithString:defaults[PSDefaults_PreselectedFeed]]];
+}
 
+- (void)setPreselectedFeedID:(NSManagedObjectID *)preselectedFeedID
+{
+    NSMutableDictionary *defaults = [[NSMutableDictionary alloc] initWithContentsOfURL:[self defaultsFile]];
+    if ( defaults == nil )
+    {
+        defaults = [NSMutableDictionary new];
+    }
+    [defaults setObject:[preselectedFeedID URIRepresentation].absoluteString forKey:PSDefaults_PreselectedFeed];
+    
+    [defaults writeToURL:[self defaultsFile] atomically:YES];
+}
+
+- (NSURL *)defaultsFile
+{
+    NSError *documentsDirectoryError = nil;
+    NSURL *documentsDirectory = [[NSFileManager defaultManager] URLForDirectory:NSDocumentDirectory
+                                                                       inDomain:NSUserDomainMask
+                                                              appropriateForURL:nil
+                                                                         create:YES
+                                                                          error:&documentsDirectoryError];
+    if ( documentsDirectoryError )
+    {
+        return nil;
+    }
+    
+    NSURL *defaultsURL = [documentsDirectory URLByAppendingPathComponent:@"defaults.plist"];
+    if ( [[NSFileManager defaultManager] fileExistsAtPath:defaultsURL.path] == NO )
+    {
+        [[NSFileManager defaultManager] createFileAtPath:defaultsURL.path
+                                                contents:nil
+                                              attributes:nil];
+    }
+    
+    return defaultsURL;
+}
 
 
 

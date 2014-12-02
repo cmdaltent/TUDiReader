@@ -15,4 +15,7 @@
 
 + (instancetype)sharedPersistenceStack;
 
+- (NSManagedObjectID *)preselectedFeedID;
+- (void)setPreselectedFeedID:(NSManagedObjectID *)preselectedFeedID;
+
 @end

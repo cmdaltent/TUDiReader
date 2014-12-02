@@ -10,6 +10,7 @@
 #import <CoreData/CoreData.h>
 
 #import "Group.h"
+#import "Item.h"
 
 @interface Feed : NSManagedObject
 
@@ -17,5 +18,6 @@
 @property NSURL *url;
 
 @property Group *group;
+@property NSSet *items;
 
 @end

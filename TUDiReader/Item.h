@@ -7,13 +7,19 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreData/CoreData.h>
 
-@interface Item : NSObject
+@class Feed;
+
+@interface Item : NSManagedObject
 
 @property NSString *title;
 @property NSString *author;
 @property NSString *dateString;
 @property NSString *summary;
 @property NSString *guid;
+@property BOOL read;
+
+@property Feed *feed;
 
 @end

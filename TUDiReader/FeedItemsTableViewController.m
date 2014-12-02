@@ -11,6 +11,7 @@
 #import "Feed.h"
 #import "FeedParser.h"
 #import "Item.h"
+#import "ItemViewController.h"
 
 @interface FeedItemsTableViewController ()
 
@@ -51,6 +52,15 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ( [segue.identifier isEqualToString:@"showItemSegue"] )
+    {
+        ItemViewController *itemViewController = (ItemViewController *)segue.destinationViewController;
+        itemViewController.item = self.items[[self.tableView indexPathForSelectedRow].row];
+    }
 }
 
 #pragma mark - Table view data source
