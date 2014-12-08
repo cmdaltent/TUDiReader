@@ -9,6 +9,7 @@
 #import "FeedParser.h"
 
 #import "Item.h"
+#import "PersistenceStack.h"
 
 @interface FeedParser () <NSXMLParserDelegate>
 {
@@ -61,7 +62,9 @@
 {
     if ( [elementName isEqualToString:@"item"] )
     {
-        _currentItem = [Item new];
+        _currentItem = [[Item alloc] initWithEntity:[NSEntityDescription entityForName:@"Item"
+                                                                inManagedObjectContext:[PersistenceStack sharedPersistenceStack].managedObjectContext]
+                     insertIntoManagedObjectContext:[PersistenceStack sharedPersistenceStack].managedObjectContext];
         _processingItem = YES;
     }
     if ( _processingItem )
@@ -82,6 +85,7 @@
     if (_processingItem && [elementName isEqualToString:@"title"] )
     {
         _currentItem.title = [_nodeText stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]];
+        
     }
     if (_processingItem && [elementName isEqualToString:@"pubDate"] )
     {

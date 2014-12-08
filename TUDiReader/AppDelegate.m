@@ -10,6 +10,7 @@
 #import "DetailViewController.h"
 #import "PersistenceStack.h"
 #import "Feed.h"
+#import "FeedParser.h"
 
 @interface AppDelegate () <UISplitViewControllerDelegate>
 
@@ -74,8 +75,11 @@
                                                 completionHandler(UIBackgroundFetchResultNoData);
                                                 return;
                                             }
-                                            // TODO: parse items and associate with feed.
-                                            completionHandler(UIBackgroundFetchResultNewData);
+                                            FeedParser *parser = [[FeedParser alloc] initWithData:data];
+                                            parser.parsingFinishedBlock = ^(NSArray *items) {
+                                                [feed addItems:items];
+                                                completionHandler(UIBackgroundFetchResultNewData);
+                                            };
                                         }];
         [task resume];
     }

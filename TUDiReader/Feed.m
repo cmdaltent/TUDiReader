@@ -16,4 +16,11 @@
 @dynamic group;
 @dynamic items;
 
+- (void)addItems:(NSArray *)items
+{
+    NSMutableSet *set = [NSMutableSet setWithSet:self.items];
+    [set addObjectsFromArray:items];
+    self.items = [NSSet setWithSet:set];
+}
+
 @end

@@ -20,4 +20,6 @@
 @property Group *group;
 @property NSSet *items;
 
+- (void)addItems:(NSArray *)items;
+
 @end

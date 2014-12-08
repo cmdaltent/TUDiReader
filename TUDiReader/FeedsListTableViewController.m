@@ -40,6 +40,37 @@
 {
     [super viewWillAppear:animated];
     _isViewDisplayed = YES;
+    
+    int section = 0, row = 0;
+    BOOL found = NO;
+    NSError *fetchError = nil;
+    NSManagedObjectID *objectID = [[PersistenceStack sharedPersistenceStack] preselectedFeedID];
+    if ( objectID == nil )
+        return;
+    Feed *preselectedFeed = (Feed *)[[PersistenceStack sharedPersistenceStack].managedObjectContext existingObjectWithID:objectID error:&fetchError];
+    if ( preselectedFeed == nil || fetchError != nil )
+        return;
+    
+    for ( Group *groups in self.groups )
+    {
+        for ( Feed *feed in [groups orderedFeeds] )
+        {
+            if ( [feed isEqual:preselectedFeed] )
+            {
+                found = YES;
+                break;
+            }
+            row += 1;
+        }
+        if ( found ) break;
+        section += 1;
+    }
+    if ( found )
+    {
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:section];
+        [self.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionTop];
+        [self performSegueWithIdentifier:@"showFeedItems" sender:self];
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -102,5 +133,32 @@
 {
     return [self.groups[section] name];
 }
+
+#pragma mark - UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    Feed *feed = [self.groups[indexPath.section] orderedFeeds][indexPath.row];
+    [[PersistenceStack sharedPersistenceStack] setPreselectedFeedID:feed.objectID];
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 @end
