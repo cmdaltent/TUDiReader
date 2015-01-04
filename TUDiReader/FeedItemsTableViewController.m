@@ -20,8 +20,6 @@
 
 @property NSURLSession *session;
 
-@property UIRefreshControl *refreshControl;
-
 @end
 
 @implementation FeedItemsTableViewController
@@ -41,13 +39,8 @@
         [self fetchItems:nil];
     }
     
-    self.refreshControl = [[UIRefreshControl alloc] init];
+    self.refreshControl = [[UIRefreshControl alloc] init]; // Property inherited from UITableViewController
     [self.refreshControl addTarget:self action:@selector(fetchItems:) forControlEvents:UIControlEventValueChanged];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

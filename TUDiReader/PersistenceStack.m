@@ -24,7 +24,7 @@ static NSString *PSDefaults_PreselectedFeed = @"PSDefaults_PreselectedFeed";
     static PersistenceStack *__sharedInstance = nil;
     static dispatch_once_t token;
     dispatch_once(&token, ^{
-        __sharedInstance = [[super allocWithZone:NULL] initUnique];
+        __sharedInstance = [(PersistenceStack *) [super allocWithZone:NULL] initUnique];
     });
     
     return __sharedInstance;
@@ -104,7 +104,7 @@ static NSString *PSDefaults_PreselectedFeed = @"PSDefaults_PreselectedFeed";
     {
         defaults = [NSMutableDictionary new];
     }
-    [defaults setObject:[preselectedFeedID URIRepresentation].absoluteString forKey:PSDefaults_PreselectedFeed];
+    defaults[PSDefaults_PreselectedFeed] = [preselectedFeedID URIRepresentation].absoluteString;
     
     [defaults writeToURL:[self defaultsFile] atomically:YES];
 }
@@ -123,7 +123,7 @@ static NSString *PSDefaults_PreselectedFeed = @"PSDefaults_PreselectedFeed";
     }
     
     NSURL *defaultsURL = [documentsDirectory URLByAppendingPathComponent:@"defaults.plist"];
-    if ( [[NSFileManager defaultManager] fileExistsAtPath:defaultsURL.path] == NO )
+    if ( ! [[NSFileManager defaultManager] fileExistsAtPath:defaultsURL.path] )
     {
         [[NSFileManager defaultManager] createFileAtPath:defaultsURL.path
                                                 contents:nil

@@ -15,10 +15,13 @@
 
 @interface FeedsListTableViewController ()
 {
+    /**
+    * Just an instance variable without generated accessor methods.
+    */
     BOOL _isViewDisplayed;
 }
 
-@property NSArray *groups;
+@property NSArray *groups; // Property: Strong, Atomic, readwrite (-groups and -setGroups: generated)
 
 @end
 
@@ -26,7 +29,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
+    /**
+    * Whenever an NSManagedObjectContext instance receives a -save: message, it will emit this Notification to the
+    * NSNotificationCenter.
+    * When the notification center receives such a notification it will send the selector message to all registered
+    * observers.
+    * In this case this instance will receive the -updateTableView: message.
+    */
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(updateTableView:)
                                                  name:NSManagedObjectContextDidSaveNotification object:nil];
@@ -40,7 +50,11 @@
 {
     [super viewWillAppear:animated];
     _isViewDisplayed = YES;
-    
+
+    /**
+    * When the view appears, we want to highlight and select the feed that was last opened by the user.
+    * The following LOC determine the last feed read and the position in the table view hierarchy to highlight and select.
+    */
     int section = 0, row = 0;
     BOOL found = NO;
     NSError *fetchError = nil;
@@ -79,11 +93,6 @@
     _isViewDisplayed = NO;
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 - (void)updateTableView:(id)sender
 {
     NSManagedObjectContext *managedObjectContext = [PersistenceStack sharedPersistenceStack].managedObjectContext;
@@ -91,9 +100,18 @@
     NSError *fetchError = nil;
     
     self.groups = [managedObjectContext executeFetchRequest:fetchRequest error:&fetchError];
+    if( _isViewDisplayed )
+    {
+        [self.tableView reloadData];
+    }
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    /**
+    * The -prepareForSegue:sender: method provides the possibility to pass information to destination view controllers
+    * before they are displayed.
+    * The data will be set before the view controller receives the -viewDidLoad message.
+    */
     if ([[segue identifier] isEqualToString:@"showFeedItems"])
     {
         /**
@@ -106,6 +124,11 @@
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         controller.feed = [(Group *)self.groups[indexPath.section] orderedFeeds][indexPath.row];
     }
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 #pragma mark - UITableViewDataSource
@@ -141,24 +164,5 @@
     Feed *feed = [self.groups[indexPath.section] orderedFeeds][indexPath.row];
     [[PersistenceStack sharedPersistenceStack] setPreselectedFeedID:feed.objectID];
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 @end

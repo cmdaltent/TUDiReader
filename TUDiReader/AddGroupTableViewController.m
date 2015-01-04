@@ -34,6 +34,11 @@
 
 - (BOOL)prefersStatusBarHidden
 {
+    /**
+    * The Popover will be displayed as a push segue on iOS.
+    * In order to prevent the topmost row of the table view to be partly hidden under the status bar, we tell the system
+    * not to display the status bar when this view controller displays its content.
+    */
     return YES;
 }
 
@@ -55,6 +60,9 @@
 
 - (void)dealloc
 {
+    /**
+    * Make sure to remove observers from the notification center before the instance gets ultimately deallocated.
+    */
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 

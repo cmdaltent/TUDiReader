@@ -7,7 +7,6 @@
 //
 
 #import "AppDelegate.h"
-#import "DetailViewController.h"
 #import "PersistenceStack.h"
 #import "Feed.h"
 #import "FeedParser.h"
@@ -20,8 +19,16 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    /**
+    * Set the AppDelegate as delegate for the SplitView so that the default button to show the Master view can be
+    * properly displayed on orientation changes of the device.
+    */
     UISplitViewController *splitViewController = (UISplitViewController *)self.window.rootViewController;
+    /**
+    * The window's root view controller is set by the system.
+    * The initial view controller of the main storyboard file is assigned as root view controller.
+    * The main storyboard file can be set on the Target's overview page in Xcode.
+    */
     UINavigationController *navigationController = [splitViewController.viewControllers lastObject];
     navigationController.topViewController.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem;
     splitViewController.delegate = self;
@@ -52,6 +59,10 @@
 
 - (void)application:(UIApplication *)application performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
 {
+    /**
+    * The app will be sent this message whenever the system grants background execution time to the application.
+    * In our example, we fetch the latest feed items of the last read feed.
+    */
     NSError *fetchError = nil;
     PersistenceStack *persistenceStack = [PersistenceStack sharedPersistenceStack];
     Feed *feed = (Feed *)[persistenceStack.managedObjectContext existingObjectWithID:[persistenceStack preselectedFeedID] error:&fetchError];
@@ -88,12 +99,7 @@
 #pragma mark - Split view
 
 - (BOOL)splitViewController:(UISplitViewController *)splitViewController collapseSecondaryViewController:(UIViewController *)secondaryViewController ontoPrimaryViewController:(UIViewController *)primaryViewController {
-    if ([secondaryViewController isKindOfClass:[UINavigationController class]] && [[(UINavigationController *)secondaryViewController topViewController] isKindOfClass:[DetailViewController class]] && ([(DetailViewController *)[(UINavigationController *)secondaryViewController topViewController] detailItem] == nil)) {
-        // Return YES to indicate that we have handled the collapse by doing nothing; the secondary controller will be discarded.
-        return YES;
-    } else {
-        return NO;
-    }
+    return [secondaryViewController isKindOfClass:[UINavigationController class]] && [[(UINavigationController *)secondaryViewController topViewController] isKindOfClass:[UIViewController class]];
 }
 
 @end

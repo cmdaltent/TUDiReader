@@ -10,6 +10,11 @@
 
 @implementation Feed
 
+/**
+* The @dynamic directive does not generate accessor method, in contrast to @synthesize.
+* It ensures the compiler that there will be appropriate accessor methods available at runtime.
+* CoreData handles the message dispatch at runtime.
+*/
 @dynamic title;
 @dynamic url;
 

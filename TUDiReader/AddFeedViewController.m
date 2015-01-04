@@ -39,6 +39,11 @@ static void *KVOContext = &KVOContext;
 
 - (void)dealloc
 {
+    /**
+    * Key-Value-Observing (KVO)
+    * We must ensure to remove the registered observer from the instances dispatch table before the instance is
+    * ultimately deallocated.
+    */
     [self removeObserver:self forKeyPath:@"selectedGroup" context:KVOContext];
 }
 
@@ -49,11 +54,6 @@ static void *KVOContext = &KVOContext;
         [self.addGroupButton setTitle:@"Change Group" forState:UIControlStateNormal];
         self.selectedGroupLabel.text = self.selectedGroup.name;
     }
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
