@@ -24,7 +24,7 @@ static NSString *PSDefaults_PreselectedFeed = @"PSDefaults_PreselectedFeed";
     static PersistenceStack *__sharedInstance = nil;
     static dispatch_once_t token;
     dispatch_once(&token, ^{
-        __sharedInstance = [(PersistenceStack *) [super allocWithZone:NULL] initUnique];
+        __sharedInstance = [[super allocWithZone:NULL] initUnique];
     });
     
     return __sharedInstance;
@@ -39,6 +39,8 @@ static NSString *PSDefaults_PreselectedFeed = @"PSDefaults_PreselectedFeed";
 {
     return [self init];
 }
+
+#pragma mark - CoreData Stack
 
 - (NSManagedObjectContext *)managedObjectContext
 {
@@ -66,11 +68,7 @@ static NSString *PSDefaults_PreselectedFeed = @"PSDefaults_PreselectedFeed";
 - (NSURL *)storeURL
 {
     NSError *documentsDirectoryError = nil;
-    NSURL *documentsDirectory = [[NSFileManager defaultManager] URLForDirectory:NSDocumentDirectory
-                                                                       inDomain:NSUserDomainMask
-                                                              appropriateForURL:nil
-                                                                         create:YES
-                                                                          error:&documentsDirectoryError];
+    NSURL *documentsDirectory = [[NSFileManager defaultManager] containerURLForSecurityApplicationGroupIdentifier:@"group.de.tu-dresden.inf.rn.TUDiReader"];
     if (documentsDirectoryError)
     {
         NSLog(@"Could not get Document directory.");
@@ -86,74 +84,31 @@ static NSString *PSDefaults_PreselectedFeed = @"PSDefaults_PreselectedFeed";
     return [[NSManagedObjectModel alloc] initWithContentsOfURL:url];
 }
 
+#pragma mark - Preselected Feed
+
 - (NSManagedObjectID *)preselectedFeedID
 {
-    NSDictionary *defaults = [[NSDictionary alloc] initWithContentsOfURL:[self defaultsFile]];
-    if ( defaults.count == 0 )
-    {
+    NSURL *representation = [[self defaultSuite] URLForKey:PSDefaults_PreselectedFeed];
+    if ( representation == nil )
         return nil;
-    }
     
-    return [self.managedObjectContext.persistentStoreCoordinator managedObjectIDForURIRepresentation:[NSURL URLWithString:defaults[PSDefaults_PreselectedFeed]]];
+    return [self.managedObjectContext.persistentStoreCoordinator managedObjectIDForURIRepresentation:representation];
 }
 
 - (void)setPreselectedFeedID:(NSManagedObjectID *)preselectedFeedID
 {
-    NSMutableDictionary *defaults = [[NSMutableDictionary alloc] initWithContentsOfURL:[self defaultsFile]];
-    if ( defaults == nil )
+    if ( preselectedFeedID == nil )
     {
-        defaults = [NSMutableDictionary new];
+        [[self defaultSuite] removeObjectForKey:PSDefaults_PreselectedFeed];
+        return;
     }
-    defaults[PSDefaults_PreselectedFeed] = [preselectedFeedID URIRepresentation].absoluteString;
     
-    [defaults writeToURL:[self defaultsFile] atomically:YES];
+    [[self defaultSuite] setURL:[preselectedFeedID URIRepresentation] forKey:PSDefaults_PreselectedFeed];
 }
 
-- (NSURL *)defaultsFile
+- (NSUserDefaults *)defaultSuite
 {
-    NSError *documentsDirectoryError = nil;
-    NSURL *documentsDirectory = [[NSFileManager defaultManager] URLForDirectory:NSDocumentDirectory
-                                                                       inDomain:NSUserDomainMask
-                                                              appropriateForURL:nil
-                                                                         create:YES
-                                                                          error:&documentsDirectoryError];
-    if ( documentsDirectoryError )
-    {
-        return nil;
-    }
-    
-    NSURL *defaultsURL = [documentsDirectory URLByAppendingPathComponent:@"defaults.plist"];
-    if ( ! [[NSFileManager defaultManager] fileExistsAtPath:defaultsURL.path] )
-    {
-        [[NSFileManager defaultManager] createFileAtPath:defaultsURL.path
-                                                contents:nil
-                                              attributes:nil];
-    }
-    
-    return defaultsURL;
+    return [[NSUserDefaults alloc] initWithSuiteName:@"group.de.tu-dresden.inf.rn.TUDiReader"];
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 @end

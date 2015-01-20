@@ -25,6 +25,15 @@
 		63D5A66219F5444600B2C872 /* FeedsListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63D5A66119F5444600B2C872 /* FeedsListTableViewController.m */; };
 		63D5A66519F547B500B2C872 /* Feed.m in Sources */ = {isa = PBXBuildFile; fileRef = 63D5A66419F547B500B2C872 /* Feed.m */; };
 		63D80BF319FE8ED800F4EF1D /* AddFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63D80BF219FE8ED800F4EF1D /* AddFeedViewController.m */; };
+		63EB46341A6D471A0022D4BB /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63EB46331A6D471A0022D4BB /* NotificationCenter.framework */; };
+		63EB46391A6D471A0022D4BB /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63EB46381A6D471A0022D4BB /* TodayViewController.swift */; };
+		63EB463B1A6D471A0022D4BB /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63EB463A1A6D471A0022D4BB /* MainInterface.storyboard */; };
+		63EB463E1A6D471A0022D4BB /* TUDiReaderToday.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 63EB46311A6D471A0022D4BB /* TUDiReaderToday.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		63EB46451A6D4BD10022D4BB /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 63EB46431A6D4BD10022D4BB /* Model.xcdatamodeld */; };
+		63EB46471A6D4C610022D4BB /* PersistenceStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63EB46461A6D4C610022D4BB /* PersistenceStack.swift */; };
+		63EB464A1A6D4FE00022D4BB /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63EB46491A6D4FE00022D4BB /* Feed.swift */; };
+		63EB464C1A6E16710022D4BB /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63EB464B1A6E16710022D4BB /* Item.swift */; };
+		63EB464E1A6E16810022D4BB /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63EB464D1A6E16810022D4BB /* Group.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,7 +44,28 @@
 			remoteGlobalIDString = 63D5A63319F542C100B2C872;
 			remoteInfo = TUDiReader;
 		};
+		63EB463C1A6D471A0022D4BB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 63D5A62C19F542C100B2C872 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 63EB46301A6D471A0022D4BB;
+			remoteInfo = TUDiReaderToday;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		63EB46421A6D471A0022D4BB /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				63EB463E1A6D471A0022D4BB /* TUDiReaderToday.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		6364BE951A2CB34900A97F7B /* ItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemViewController.h; sourceTree = "<group>"; };
@@ -72,6 +102,18 @@
 		63D5A66419F547B500B2C872 /* Feed.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Feed.m; sourceTree = "<group>"; };
 		63D80BF119FE8ED800F4EF1D /* AddFeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddFeedViewController.h; sourceTree = "<group>"; };
 		63D80BF219FE8ED800F4EF1D /* AddFeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddFeedViewController.m; sourceTree = "<group>"; };
+		63EB46311A6D471A0022D4BB /* TUDiReaderToday.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TUDiReaderToday.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		63EB46331A6D471A0022D4BB /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
+		63EB46371A6D471A0022D4BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		63EB46381A6D471A0022D4BB /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
+		63EB463A1A6D471A0022D4BB /* MainInterface.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainInterface.storyboard; sourceTree = "<group>"; };
+		63EB46441A6D4BD10022D4BB /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		63EB46461A6D4C610022D4BB /* PersistenceStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistenceStack.swift; sourceTree = "<group>"; };
+		63EB46481A6D4F840022D4BB /* TUDiReaderToday.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = TUDiReaderToday.entitlements; sourceTree = "<group>"; };
+		63EB46491A6D4FE00022D4BB /* Feed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Feed.swift; sourceTree = "<group>"; };
+		63EB464B1A6E16710022D4BB /* Item.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		63EB464D1A6E16810022D4BB /* Group.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
+		63EB464F1A6E17870022D4BB /* TUDiReader.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = TUDiReader.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +131,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		63EB462E1A6D471A0022D4BB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				63EB46341A6D471A0022D4BB /* NotificationCenter.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -97,6 +147,8 @@
 			children = (
 				63D5A63619F542C100B2C872 /* TUDiReader */,
 				63D5A65319F542C100B2C872 /* TUDiReaderTests */,
+				63EB46351A6D471A0022D4BB /* TUDiReaderToday */,
+				63EB46321A6D471A0022D4BB /* Frameworks */,
 				63D5A63519F542C100B2C872 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -106,6 +158,7 @@
 			children = (
 				63D5A63419F542C100B2C872 /* TUDiReader.app */,
 				63D5A65019F542C100B2C872 /* TUDiReaderTests.xctest */,
+				63EB46311A6D471A0022D4BB /* TUDiReaderToday.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -113,6 +166,7 @@
 		63D5A63619F542C100B2C872 /* TUDiReader */ = {
 			isa = PBXGroup;
 			children = (
+				63EB464F1A6E17870022D4BB /* TUDiReader.entitlements */,
 				63D5A63B19F542C100B2C872 /* AppDelegate.h */,
 				63D5A63C19F542C100B2C872 /* AppDelegate.m */,
 				63D5A64419F542C100B2C872 /* Main.storyboard */,
@@ -172,6 +226,38 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		63EB46321A6D471A0022D4BB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				63EB46331A6D471A0022D4BB /* NotificationCenter.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		63EB46351A6D471A0022D4BB /* TUDiReaderToday */ = {
+			isa = PBXGroup;
+			children = (
+				63EB46481A6D4F840022D4BB /* TUDiReaderToday.entitlements */,
+				63EB46431A6D4BD10022D4BB /* Model.xcdatamodeld */,
+				63EB46381A6D471A0022D4BB /* TodayViewController.swift */,
+				63EB463A1A6D471A0022D4BB /* MainInterface.storyboard */,
+				63EB46361A6D471A0022D4BB /* Supporting Files */,
+				63EB46461A6D4C610022D4BB /* PersistenceStack.swift */,
+				63EB46491A6D4FE00022D4BB /* Feed.swift */,
+				63EB464B1A6E16710022D4BB /* Item.swift */,
+				63EB464D1A6E16810022D4BB /* Group.swift */,
+			);
+			path = TUDiReaderToday;
+			sourceTree = "<group>";
+		};
+		63EB46361A6D471A0022D4BB /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				63EB46371A6D471A0022D4BB /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -182,10 +268,12 @@
 				63D5A63019F542C100B2C872 /* Sources */,
 				63D5A63119F542C100B2C872 /* Frameworks */,
 				63D5A63219F542C100B2C872 /* Resources */,
+				63EB46421A6D471A0022D4BB /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				63EB463D1A6D471A0022D4BB /* PBXTargetDependency */,
 			);
 			name = TUDiReader;
 			productName = TUDiReader;
@@ -210,6 +298,23 @@
 			productReference = 63D5A65019F542C100B2C872 /* TUDiReaderTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		63EB46301A6D471A0022D4BB /* TUDiReaderToday */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 63EB46411A6D471A0022D4BB /* Build configuration list for PBXNativeTarget "TUDiReaderToday" */;
+			buildPhases = (
+				63EB462D1A6D471A0022D4BB /* Sources */,
+				63EB462E1A6D471A0022D4BB /* Frameworks */,
+				63EB462F1A6D471A0022D4BB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TUDiReaderToday;
+			productName = TUDiReaderToday;
+			productReference = 63EB46311A6D471A0022D4BB /* TUDiReaderToday.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -221,7 +326,11 @@
 				TargetAttributes = {
 					63D5A63319F542C100B2C872 = {
 						CreatedOnToolsVersion = 6.0.1;
+						DevelopmentTeam = KYTQR8SDCT;
 						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
 							com.apple.BackgroundModes = {
 								enabled = 1;
 							};
@@ -230,6 +339,15 @@
 					63D5A64F19F542C100B2C872 = {
 						CreatedOnToolsVersion = 6.0.1;
 						TestTargetID = 63D5A63319F542C100B2C872;
+					};
+					63EB46301A6D471A0022D4BB = {
+						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = KYTQR8SDCT;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -248,6 +366,7 @@
 			targets = (
 				63D5A63319F542C100B2C872 /* TUDiReader */,
 				63D5A64F19F542C100B2C872 /* TUDiReaderTests */,
+				63EB46301A6D471A0022D4BB /* TUDiReaderToday */,
 			);
 		};
 /* End PBXProject section */
@@ -267,6 +386,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		63EB462F1A6D471A0022D4BB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				63EB463B1A6D471A0022D4BB /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -302,6 +429,19 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		63EB462D1A6D471A0022D4BB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				63EB464C1A6E16710022D4BB /* Item.swift in Sources */,
+				63EB46391A6D471A0022D4BB /* TodayViewController.swift in Sources */,
+				63EB464A1A6D4FE00022D4BB /* Feed.swift in Sources */,
+				63EB464E1A6E16810022D4BB /* Group.swift in Sources */,
+				63EB46451A6D4BD10022D4BB /* Model.xcdatamodeld in Sources */,
+				63EB46471A6D4C610022D4BB /* PersistenceStack.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -309,6 +449,11 @@
 			isa = PBXTargetDependency;
 			target = 63D5A63319F542C100B2C872 /* TUDiReader */;
 			targetProxy = 63D5A65119F542C100B2C872 /* PBXContainerItemProxy */;
+		};
+		63EB463D1A6D471A0022D4BB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 63EB46301A6D471A0022D4BB /* TUDiReaderToday */;
+			targetProxy = 63EB463C1A6D471A0022D4BB /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -414,9 +559,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = TUDiReader/TUDiReader.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = TUDiReader/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -424,9 +574,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = TUDiReader/TUDiReader.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = TUDiReader/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
@@ -464,6 +619,41 @@
 			};
 			name = Release;
 		};
+		63EB463F1A6D471A0022D4BB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = TUDiReaderToday/TUDiReaderToday.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = TUDiReaderToday/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		63EB46401A6D471A0022D4BB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = TUDiReaderToday/TUDiReaderToday.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = TUDiReaderToday/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -494,6 +684,15 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		63EB46411A6D471A0022D4BB /* Build configuration list for PBXNativeTarget "TUDiReaderToday" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				63EB463F1A6D471A0022D4BB /* Debug */,
+				63EB46401A6D471A0022D4BB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
@@ -503,6 +702,16 @@
 				63D4C0081A1105BE00DF35F3 /* Model.xcdatamodel */,
 			);
 			currentVersion = 63D4C0081A1105BE00DF35F3 /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+		63EB46431A6D4BD10022D4BB /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				63EB46441A6D4BD10022D4BB /* Model.xcdatamodel */,
+			);
+			currentVersion = 63EB46441A6D4BD10022D4BB /* Model.xcdatamodel */;
 			path = Model.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
